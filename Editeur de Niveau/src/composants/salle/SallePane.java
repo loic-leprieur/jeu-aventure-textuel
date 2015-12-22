@@ -1,6 +1,7 @@
 package composants.salle;
 
 import composants.GridPaneEditeur;
+import javafx.stage.Stage;
 import vue.SalleVueList;
 
 /**
@@ -12,8 +13,8 @@ public class SallePane extends GridPaneEditeur {
      * Constructeur de SallePane
      * Créer un pane pour salle, il sera utiliser dans le stage
      */
-    public SallePane(){
-        this.createComponent(new SalleVueList(),new SalleFrame());
+    public SallePane(Stage stage){
+        this.createComponent(stage,new SalleVueList(),new SalleFrame());
     }
 
 

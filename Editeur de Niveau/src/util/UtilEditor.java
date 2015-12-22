@@ -30,7 +30,7 @@ public class UtilEditor {
     public static Stage createStage(String titre, int width, int height, Pane pane, boolean resizible,Color color){
         Stage stage = new Stage();
         stage.setTitle("4LEditeur " + titre);
-        if(color==null) color = Color.BEIGE;
+        if(color==null) color = Color.WHITE;
         stage.setResizable(resizible);
         pane.getStylesheets().add("util/style/style.css");
         stage.setScene(new Scene(pane,width,height, color));

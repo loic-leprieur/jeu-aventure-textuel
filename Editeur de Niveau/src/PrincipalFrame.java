@@ -10,19 +10,19 @@ import util.UtilEditor;
 public class PrincipalFrame {
 
     public static Model model;
-    public static BorderPane root;
+    public BorderPane pane;
 
     /**
      * Création de la fenêtre principale
      */
     public PrincipalFrame(){
-        root = new BorderPane();
+        pane = new BorderPane();
         model = new Model();
 
-        Stage stage = UtilEditor.createStage("",1000,700,root,true,null);
+        Stage stage = UtilEditor.createStage("",1000,700, pane,true,null);
 
-        root.setTop(new PaneTop(stage));
-        root.setCenter(new PaneCenter(stage));
+        pane.setTop(new PaneTop(stage));
+        pane.setCenter(new PaneCenter(stage));
 
         stage.show();
     }
