@@ -15,7 +15,7 @@ public class AssociationFrame extends ParentFrame {
      */
     public AssociationFrame(){
         BorderPane pane = new BorderPane();
-        super.stage = UtilEditor.createStage("Création Association",450,100,pane,false,null);
+        super.stage = UtilEditor.createStage("Création Association",450,100,pane,false);
     }
 
 }

@@ -19,7 +19,7 @@ public class PrincipalFrame {
         pane = new BorderPane();
         model = new Model();
 
-        Stage stage = UtilEditor.createStage("",1000,700, pane,true,null);
+        Stage stage = UtilEditor.createStage("",1000,700, pane,true);
 
         pane.setTop(new PaneTop(stage));
         pane.setCenter(new PaneCenter(stage));

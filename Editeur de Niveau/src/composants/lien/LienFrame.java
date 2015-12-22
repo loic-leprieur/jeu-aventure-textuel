@@ -15,7 +15,7 @@ public class LienFrame extends ParentFrame {
      */
     public LienFrame(){
         BorderPane pane = new BorderPane();
-        super.stage = UtilEditor.createStage("Création Lien",450,100,pane,false,null);
+        super.stage = UtilEditor.createStage("Création Lien",450,100,pane,false);
     }
 
 }

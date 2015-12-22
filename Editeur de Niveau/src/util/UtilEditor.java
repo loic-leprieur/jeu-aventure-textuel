@@ -24,16 +24,15 @@ public class UtilEditor {
      * @param height Hauteur du Stage
      * @param pane Pane du Stage
      * @param resizible Stage redimmensionnable
-     * @param color Couleur du Stage
      * @return Stage
      */
-    public static Stage createStage(String titre, int width, int height, Pane pane, boolean resizible,Color color){
+    public static Stage createStage(String titre, int width, int height, Pane pane, boolean resizible){
         Stage stage = new Stage();
         stage.setTitle("4LEditeur " + titre);
-        if(color==null) color = Color.WHITE;
         stage.setResizable(resizible);
         pane.getStylesheets().add("util/style/style.css");
-        stage.setScene(new Scene(pane,width,height, color));
+        pane.setStyle("-fx-background-color: white");
+        stage.setScene(new Scene(pane,width,height));
         return stage;
     }
 

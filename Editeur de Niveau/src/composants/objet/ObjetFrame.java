@@ -15,6 +15,6 @@ public class ObjetFrame extends ParentFrame {
      */
     public ObjetFrame(){
         BorderPane pane = new BorderPane();
-        super.stage = UtilEditor.createStage("Création Objet",450,100,pane,false,null);
+        super.stage = UtilEditor.createStage("Création Objet",450,100,pane,false);
     }
 }

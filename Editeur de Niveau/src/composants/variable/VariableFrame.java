@@ -15,7 +15,7 @@ public class VariableFrame extends ParentFrame {
      */
     public VariableFrame(){
         BorderPane pane = new BorderPane();
-        super.stage = UtilEditor.createStage("Création Variable",450,100,pane,false,null);
+        super.stage = UtilEditor.createStage("Création Variable",450,100,pane,false);
     }
 
 }
