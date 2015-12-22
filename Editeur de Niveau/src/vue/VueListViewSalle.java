@@ -1,0 +1,23 @@
+package vue;
+
+import javafx.scene.control.ListView;
+import java.util.Observable;
+import java.util.Observer;
+
+/**
+ * Created by louzw on 21/12/2015.
+ */
+public class VueListViewSalle extends ListView<String> implements Observer {
+
+    public VueListViewSalle(){
+        //ObservableList<String> items = FXCollections.observableArrayList ("Item1","Item2","Item3");
+        //items.add("test");
+       // this.setItems(items);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
+
+}
