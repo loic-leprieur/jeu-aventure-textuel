@@ -6,9 +6,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Vue de la ListView pour Objet
+ * Vue de la ListView pour Variable
  */
-public class VueListObjet extends ListView<String> implements Observer {
+public class VariableVueList extends ListView<String> implements Observer {
     @Override
     public void update(Observable o, Object arg) {
 

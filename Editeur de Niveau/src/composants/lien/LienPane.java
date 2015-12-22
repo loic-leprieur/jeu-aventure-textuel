@@ -1,7 +1,7 @@
 package composants.lien;
 
 import composants.GridPaneEditeur;
-import vue.VueListViewLien;
+import vue.LienVueList;
 
 /**
  * Classe LienPane
@@ -13,7 +13,7 @@ public class LienPane extends GridPaneEditeur {
      * Créer un pane pour lien, il sera utiliser dans le stage
      */
     public LienPane(){
-        this.createComponent(new VueListViewLien(),new LienFrame());
+        this.createComponent(new LienVueList(),new LienFrame());
     }
 
 }

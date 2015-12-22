@@ -6,9 +6,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Vue de la ListView pour Association
+ * Vue de la ListView pour Objet
  */
-public class VueListAssociation extends ListView<String> implements Observer {
+public class ObjetVueList extends ListView<String> implements Observer {
     @Override
     public void update(Observable o, Object arg) {
 

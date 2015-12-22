@@ -1,7 +1,7 @@
 package composants.salle;
 
 import composants.GridPaneEditeur;
-import vue.VueListViewSalle;
+import vue.SalleVueList;
 
 /**
  * Classe SallePane
@@ -13,7 +13,7 @@ public class SallePane extends GridPaneEditeur {
      * Créer un pane pour salle, il sera utiliser dans le stage
      */
     public SallePane(){
-        this.createComponent(new VueListViewSalle(),new SalleFrame());
+        this.createComponent(new SalleVueList(),new SalleFrame());
     }
 
 

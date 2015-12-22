@@ -1,7 +1,7 @@
 package composants.variable;
 
 import composants.GridPaneEditeur;
-import vue.VueListVariable;
+import vue.VariableVueList;
 
 /**
  * Classe VariablePane
@@ -13,6 +13,6 @@ public class VariablePane extends GridPaneEditeur {
      * Créer un pane pour variable, il sera utiliser dans le stage
      */
     public VariablePane(){
-        this.createComponent(new VueListVariable(),new VariableFrame());
+        this.createComponent(new VariableVueList(),new VariableFrame());
     }
 }

@@ -7,9 +7,9 @@ import java.util.Observer;
 /**
  * Vue de la ListView pour Salle
  */
-public class VueListViewSalle extends ListView<String> implements Observer {
+public class SalleVueList extends ListView<String> implements Observer {
 
-    public VueListViewSalle(){
+    public SalleVueList(){
         //ObservableList<String> items = FXCollections.observableArrayList ("Item1","Item2","Item3");
         //items.add("test");
        // this.setItems(items);

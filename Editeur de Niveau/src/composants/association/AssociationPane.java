@@ -1,7 +1,7 @@
 package composants.association;
 
 import composants.GridPaneEditeur;
-import vue.VueListAssociation;
+import vue.AssociationVueList;
 
 /**
  * Classe AssociationPane
@@ -13,7 +13,7 @@ public class AssociationPane extends GridPaneEditeur {
      * Créer un pane pour association, il sera utiliser dans le stage
      */
     public AssociationPane(){
-        this.createComponent(new VueListAssociation(),new AssociationFrame());
+        this.createComponent(new AssociationVueList(),new AssociationFrame());
     }
 
 }

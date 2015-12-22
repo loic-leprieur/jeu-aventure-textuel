@@ -7,9 +7,9 @@ import java.util.Observer;
 /**
  * Vue de la ListView pour Lien
  */
-public class VueListViewLien extends ListView<String> implements Observer {
+public class LienVueList extends ListView<String> implements Observer {
 
-    public VueListViewLien(){
+    public LienVueList(){
         //ObservableList<String> items = FXCollections.observableArrayList ("Item1","Item2","Item3");
         //items.add("test");
         // this.setItems(items);

@@ -1,7 +1,7 @@
 package composants.objet;
 
 import composants.GridPaneEditeur;
-import vue.VueListObjet;
+import vue.ObjetVueList;
 
 /**
  * Classe ObjetPane
@@ -13,7 +13,7 @@ public class ObjetPane extends GridPaneEditeur {
      * Créer un pane pour objet, il sera utiliser dans le stage
      */
     public ObjetPane(){
-        this.createComponent(new VueListObjet(),new ObjetFrame());
+        this.createComponent(new ObjetVueList(),new ObjetFrame());
     }
 
 }
