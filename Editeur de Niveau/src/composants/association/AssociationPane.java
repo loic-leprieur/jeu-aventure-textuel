@@ -1,13 +1,17 @@
 package composants.association;
 
-import composants.GridPaneEditor;
+import composants.GridPaneEditeur;
 import vue.VueListAssociation;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Classe AssociationPane
  */
-public class AssociationPane extends GridPaneEditor {
+public class AssociationPane extends GridPaneEditeur {
 
+    /**
+     * Construceur de AssociationPane
+     * Créer un pane pour association, il sera utiliser dans le stage
+     */
     public AssociationPane(){
         this.createComponent(new VueListAssociation(),new AssociationFrame());
     }

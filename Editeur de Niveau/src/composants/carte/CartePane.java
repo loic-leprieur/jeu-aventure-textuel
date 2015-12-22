@@ -1,12 +1,15 @@
 package composants.carte;
 
-import composants.GridPaneEditor;
+import composants.GridPaneEditeur;
 
 /**
- * Created by louzw on 22/12/2015.
+ * Classe CartePane
  */
-public class CartePane extends GridPaneEditor {
+public class CartePane extends GridPaneEditeur {
 
+    /**
+     * Constructeur de CartePane
+     */
     public CartePane(){
 
     }

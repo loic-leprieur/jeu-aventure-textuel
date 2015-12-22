@@ -6,16 +6,24 @@ import javafx.scene.layout.GridPane;
 import util.UtilEditor;
 
 /**
- * Created by louzw on 22/12/2015.
+ * Classe GridPaneEditeur
  */
-public abstract class GridPaneEditor extends GridPane {
+public abstract class GridPaneEditeur extends GridPane {
 
-    public GridPaneEditor(){
+    /**
+     * Constructeur de GridPaneEditeur
+     */
+    public GridPaneEditeur(){
         this.setHgap(6);
         this.setVgap(6);
         this.setPadding(new Insets(0, 6, 0, 0));
     }
 
+    /**
+     * Créer les composant dans le GridPane
+     * @param lv ListView correspondant à une Vue
+     * @param pf ParentFrame pour les boutons
+     */
     protected void createComponent(ListView<String> lv, ParentFrame pf){
         this.add(UtilEditor.createButton(pf.getStage(),"Ajouter",pf),1,0);
         this.add(UtilEditor.createButton(pf.getStage(),"Modifier",null),2,0);

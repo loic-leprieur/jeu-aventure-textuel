@@ -5,7 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Vue de la ListView pour Salle
  */
 public class VueListViewSalle extends ListView<String> implements Observer {
 

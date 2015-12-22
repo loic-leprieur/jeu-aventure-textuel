@@ -5,13 +5,16 @@ import util.UtilEditor;
 
 
 /**
- * Created by louzw on 21/12/2015.
+ * Fenêtre principale
  */
 public class PrincipalFrame {
 
     public static Model model;
     public static BorderPane root;
 
+    /**
+     * Création de la fenêtre principale
+     */
     public PrincipalFrame(){
         root = new BorderPane();
         model = new Model();

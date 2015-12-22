@@ -5,7 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Vue de la ListView pour Lien
  */
 public class VueListViewLien extends ListView<String> implements Observer {
 

@@ -16,12 +16,17 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Création du Panel au centre
  */
 public class PaneCenter extends GridPane {
 
+    //Stage du panel
     private Stage stage;
 
+    /**
+     * Constructeur de PaneCenter
+     * @param stage Stage du panel
+     */
     public PaneCenter(Stage stage){
 
         this.stage = stage;
@@ -30,22 +35,26 @@ public class PaneCenter extends GridPane {
         this.setVgap(6);
         this.setPadding(new Insets(0, 6, 0, 0));
 
+        //Création du TabPane comprenant Salle et Lien
         Map<String,Pane> mapStPa = new LinkedHashMap<>();
         mapStPa.put("Salle",new SallePane());
         mapStPa.put("Lien", new LienPane());
-
         this.add(UtilEditor.createTabPane(stage,mapStPa),1,0);
         mapStPa.clear();
 
+        //Création du TabPane comprenant Objet et Association
         mapStPa.put("Objet",new ObjetPane());
         mapStPa.put("Association",new AssociationPane());
         this.add(UtilEditor.createTabPane(stage,mapStPa),2,0);
         mapStPa.clear();
 
+        //Création du GroupBox pour Variable
         this.add(UtilEditor.createGroupBox(stage,"Variable",new VariablePane()),3,0);
 
+        //Création du GroupBox pour Carte actuel
         this.add(UtilEditor.createGroupBox(stage,"Carte actuel",new CartePane()),1,1);
 
+        //Création du GroupBox pour Script
         this.add(UtilEditor.createGroupBox(stage,"Script",new ScriptPane()),2,1,2,1);
 
     }

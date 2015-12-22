@@ -1,13 +1,17 @@
 package composants.objet;
 
-import composants.GridPaneEditor;
+import composants.GridPaneEditeur;
 import vue.VueListObjet;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Classe ObjetPane
  */
-public class ObjetPane extends GridPaneEditor {
+public class ObjetPane extends GridPaneEditeur {
 
+    /**
+     * Constructeur de ObjetPane
+     * Créer un pane pour objet, il sera utiliser dans le stage
+     */
     public ObjetPane(){
         this.createComponent(new VueListObjet(),new ObjetFrame());
     }

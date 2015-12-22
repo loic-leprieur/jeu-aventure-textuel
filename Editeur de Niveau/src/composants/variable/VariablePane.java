@@ -1,13 +1,17 @@
 package composants.variable;
 
-import composants.GridPaneEditor;
+import composants.GridPaneEditeur;
 import vue.VueListVariable;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Classe VariablePane
  */
-public class VariablePane extends GridPaneEditor {
+public class VariablePane extends GridPaneEditeur {
 
+    /**
+     * Constructeur de VariablePane
+     * Créer un pane pour variable, il sera utiliser dans le stage
+     */
     public VariablePane(){
         this.createComponent(new VueListVariable(),new VariableFrame());
     }

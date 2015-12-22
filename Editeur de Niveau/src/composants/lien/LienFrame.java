@@ -5,10 +5,14 @@ import javafx.scene.layout.BorderPane;
 import util.UtilEditor;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Classe LienFrame
  */
 public class LienFrame extends ParentFrame {
 
+    /**
+     * Constructeur de LienFrame
+     * Créer un stage pour lien permettant de modifier ou d'ajouter un lien
+     */
     public LienFrame(){
         BorderPane pane = new BorderPane();
         super.stage = UtilEditor.createStage("Création Lien",450,100,pane,false,null);

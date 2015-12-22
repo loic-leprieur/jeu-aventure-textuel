@@ -2,6 +2,9 @@ import javafx.application.*;
 
 import javafx.stage.Stage;
 
+/**
+ * Classe principale, lancement de l'application
+ */
 public class Principal extends Application {
 
     public static void main(String[]args){

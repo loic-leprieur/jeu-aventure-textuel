@@ -6,10 +6,14 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.Stage;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Creation du panel top
  */
 public class PaneTop extends MenuBar {
 
+    /**
+     * Constructeur de PaneTop
+     * @param stage Stage du panel
+     */
     public PaneTop(Stage stage){
         this.prefWidthProperty().bind(stage.widthProperty());
         Menu menuFichier = new Menu("Fichier");

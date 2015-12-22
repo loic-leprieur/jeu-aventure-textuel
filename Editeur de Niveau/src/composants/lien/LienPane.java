@@ -1,13 +1,17 @@
 package composants.lien;
 
-import composants.GridPaneEditor;
+import composants.GridPaneEditeur;
 import vue.VueListViewLien;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Classe LienPane
  */
-public class LienPane extends GridPaneEditor {
+public class LienPane extends GridPaneEditeur {
 
+    /**
+     * Constructeur LienPane
+     * Créer un pane pour lien, il sera utiliser dans le stage
+     */
     public LienPane(){
         this.createComponent(new VueListViewLien(),new LienFrame());
     }

@@ -6,10 +6,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 /**
- * Created by louzw on 21/12/2015.
+ * Classe du composant GroupBox
  */
 public class GroupBox extends StackPane {
 
+    /**
+     * Constructeur du Groupbox
+     * @param titre Titre du GroupBox
+     * @param content Contenu du GroupBox
+     */
     public GroupBox(String titre, Node content){
         Label title = new Label(" " + titre + " ");
         title.getStyleClass().add("groupbox-title");

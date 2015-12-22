@@ -6,7 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by louzw on 22/12/2015.
+ * Vue de la ListView pour Objet
  */
 public class VueListObjet extends ListView<String> implements Observer {
     @Override

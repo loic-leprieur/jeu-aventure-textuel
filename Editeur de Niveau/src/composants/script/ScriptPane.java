@@ -1,12 +1,15 @@
 package composants.script;
 
-import composants.GridPaneEditor;
+import composants.GridPaneEditeur;
 
 /**
- * Created by louzw on 22/12/2015.
+ * Classe ScriptPane
  */
-public class ScriptPane extends GridPaneEditor {
+public class ScriptPane extends GridPaneEditeur {
 
+    /**
+     * Constructeur de ScriptPane
+     */
     public ScriptPane(){
 
     }
