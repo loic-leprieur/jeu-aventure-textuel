@@ -2,6 +2,7 @@ package composants.objet;
 
 import action.bouton.ObjetBouton;
 import composants.ParentFrame;
+import images.ObservableListImage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -36,8 +37,7 @@ public class ObjetFrame extends ParentFrame {
         final CheckBox prenable = UtilEditor.createCheckBox(pane,"Objet prenable",false,true);
         pane.add(prenable,2,0,1,2);
 
-        ObservableList<String> contenu = FXCollections.observableArrayList("img1","img2","img3");
-        final ComboBox<String> image = UtilEditor.createComboBox(pane,contenu);
+        final ComboBox<String> image = UtilEditor.createComboBox(pane, ObservableListImage.imageObjetList);
         pane.add(image,3,1);
 
         final Button b = UtilEditor.createButton(pane,"Ajouter",null,true,false);

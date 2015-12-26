@@ -1,6 +1,7 @@
 package util;
 
 import composants.ParentFrame;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -12,12 +13,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
+import static util.UtilEditor.ImageType.*;
 
 /**
  * Classe des méthode pour créer des composants
  */
 public class UtilEditor {
+
+    public enum ImageType {OBJET,SALLE}
+
+    public static String cheminImage = "src/images/";
 
     /**
      * Créer un Stage
@@ -141,7 +153,7 @@ public class UtilEditor {
         ComboBox<String> cb = new ComboBox<>(contenu);
         if(pane != null)cb.prefWidthProperty().bind(pane.widthProperty());
         cb.setEditable(false);
-        cb.setValue(contenu.get(0));
+        if(contenu.get(0)!=null) cb.setValue(contenu.get(0));
         return cb;
     }
 
@@ -174,6 +186,98 @@ public class UtilEditor {
         pane.setVgap(vgap);
         pane.setPadding(i);
         if(center)pane.setAlignment(Pos.CENTER);
+    }
+
+
+    /**
+     * Obtient le chemin des images pour le type demander
+     * @param type Objet ou Salle
+     * @return ObservableList<String>
+     */
+    public static ObservableList<String> getCheminImage(ImageType type){
+        ObservableList<String> res = FXCollections.observableArrayList();
+        String chemin = cheminImage;
+        switch(type){
+            case OBJET:
+                chemin += "objets/";
+                break;
+            case SALLE:
+                chemin += "salles/";
+                break;
+            default:
+                return res;
+        }
+        File f = new File(chemin);
+
+        for(String s : f.list()){
+            res.add(s);
+        }
+
+        return res;
+    }
+
+    /**
+     * Copie et Colle le fichier a l'endroit demandé
+     * @param source Fichier a copier
+     * @param destination Fichier où coller
+     */
+    public static void copierColler( File source, File destination ){
+        try {
+            int c;
+            InputStream in = new FileInputStream(source);
+            OutputStream out = new FileOutputStream(destination);
+            while ((c=in.read())!=-1){
+                out.write(c);
+            }
+            in.close();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Extrait des fichier du jar à l'endroit demandé
+     * @param source Chemin du jar
+     * @param destination Destination
+     */
+    public static void copieCollerFromJar(String source,String destination){
+        try {
+            ZipFile zipFile = new ZipFile(source);
+            Enumeration entries = zipFile.entries();
+            ZipEntry entry;
+
+            //Recherche parmis les fichiers
+            while (entries.hasMoreElements()){
+                entry = (ZipEntry)entries.nextElement();
+                if(!entry.isDirectory()){
+                    String name = entry.getName();
+                    //On vérifie que le fichier est le bon
+                    if(name.contains("images") && (name.contains(".jpg") || name.contains(".png")) && (name.contains("obj_") || name.contains("sal_"))){
+                        extraire(zipFile,entry,destination);
+                    }
+                }
+            }
+            zipFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void extraire(ZipFile zipFile,ZipEntry entry,String destination) throws IOException {
+        BufferedInputStream input = new BufferedInputStream(zipFile.getInputStream(entry));
+
+        String dest = destination + "/" + entry.getName();
+        BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(new File(dest)));
+
+        int k;
+        byte[] bytes = new byte[2048];
+        while((k = input.read(bytes)) != -1)
+            output.write(bytes,0,k);
+
+        input.close();
+        output.flush();
+        output.close();
     }
 
 }

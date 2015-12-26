@@ -1,8 +1,8 @@
+import images.ObservableListImage;
 import javafx.application.Platform;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 /**
@@ -16,6 +16,8 @@ public class PaneTop extends MenuBar {
      */
     public PaneTop(Stage stage){
         this.prefWidthProperty().bind(stage.widthProperty());
+
+        //Menu Fichier
         Menu menuFichier = new Menu("Fichier");
         MenuItem menuFichierNouveau = new MenuItem("Nouveau");
         MenuItem menuFichierSauvegarder = new MenuItem("Sauvegarder");
@@ -25,6 +27,20 @@ public class PaneTop extends MenuBar {
 
         menuFichier.getItems().addAll(menuFichierNouveau,menuFichierSauvegarder,menuFichierCharger,new SeparatorMenuItem(),menuFichierQuitter);
 
-        this.getMenus().addAll(menuFichier);
+        //Menu Option
+        Menu menuOption = new Menu("Options");
+        MenuItem menuOptionRafraichirImage = new MenuItem("Rafraichir images");
+        menuOptionRafraichirImage.setOnAction(event -> {
+            ObservableListImage.rafraichirImage();
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setTitle("Mise à jour images");
+            a.setHeaderText("Mise à jour des images effectuée");
+            a.show();
+        });
+
+        menuOption.getItems().add(menuOptionRafraichirImage);
+
+        //Ajout menu à la menubar
+        this.getMenus().addAll(menuFichier,menuOption);
     }
 }
