@@ -20,16 +20,10 @@ import java.util.Map;
  */
 public class PaneCenter extends GridPane {
 
-    //Stage du panel
-    private Stage stage;
-
     /**
      * Constructeur de PaneCenter
-     * @param stage Stage du panel
      */
-    public PaneCenter(Stage stage){
-
-        this.stage = stage;
+    public PaneCenter(){
 
         this.setHgap(6);
         this.setVgap(6);
@@ -37,25 +31,25 @@ public class PaneCenter extends GridPane {
 
         //Création du TabPane comprenant Salle et Lien
         Map<String,Pane> mapStPa = new LinkedHashMap<>();
-        mapStPa.put("Salle",new SallePane(stage));
-        mapStPa.put("Lien", new LienPane(stage));
-        this.add(UtilEditor.createTabPane(stage,mapStPa),1,0);
+        mapStPa.put("Salle",new SallePane());
+        mapStPa.put("Lien", new LienPane());
+        this.add(UtilEditor.createTabPane(this,mapStPa),1,0);
         mapStPa.clear();
 
-        //Création du TabPane comprenant Objet et Association
-        mapStPa.put("Objet",new ObjetPane(stage));
-        mapStPa.put("Association",new AssociationPane(stage));
-        this.add(UtilEditor.createTabPane(stage,mapStPa),2,0);
+        //Création du TabPane comprenant composants.Objet et Association
+        mapStPa.put("Objet",new ObjetPane());
+        mapStPa.put("Association",new AssociationPane());
+        this.add(UtilEditor.createTabPane(this,mapStPa),2,0);
         mapStPa.clear();
 
         //Création du GroupBox pour Variable
-        this.add(UtilEditor.createGroupBox(stage,"Variable",new VariablePane(stage)),3,0);
+        this.add(UtilEditor.createGroupBox(new VariablePane(),"Variable",this),3,0);
 
         //Création du GroupBox pour Carte actuel
-        this.add(UtilEditor.createGroupBox(stage,"Carte actuel",new CartePane()),1,1);
+        this.add(UtilEditor.createGroupBox(new CartePane(),"Carte actuel",this),1,1);
 
         //Création du GroupBox pour Script
-        this.add(UtilEditor.createGroupBox(stage,"Script",new ScriptPane()),2,1,2,1);
+        this.add(UtilEditor.createGroupBox(new ScriptPane(),"Script",this),2,1,2,1);
 
     }
 
