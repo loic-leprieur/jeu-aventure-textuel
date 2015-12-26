@@ -1,6 +1,6 @@
 package action.bouton;
 
-import composants.Objet;
+import composants.objet.Objet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -65,7 +65,7 @@ public class ObjetBouton implements EventHandler<ActionEvent> {
         Objet objet = new Objet(texteNom,texteDescription,boolPrenable,texteImage);
 
         //Vérification objet n'est pas déjà présent
-        if (ObjetTable.itemListViewObjet.contains(objet)){
+        if (ObjetTable.objet.contains(objet)){
             alert.setContentText("Le nom de l'objet est déjà utilisé par un autre objet.");
             alert.show();
             return;
@@ -75,6 +75,9 @@ public class ObjetBouton implements EventHandler<ActionEvent> {
         this.clear();
     }
 
+    /**
+     * Remet à zéro la fenêtre
+     */
     private void clear(){
         nom.clear();
         description.clear();

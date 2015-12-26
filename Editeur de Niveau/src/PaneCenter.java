@@ -36,7 +36,7 @@ public class PaneCenter extends GridPane {
         this.add(UtilEditor.createTabPane(this,mapStPa),1,0);
         mapStPa.clear();
 
-        //Création du TabPane comprenant composants.Objet et Association
+        //Création du TabPane comprenant Objet et Association
         mapStPa.put("Objet",new ObjetPane());
         mapStPa.put("Association",new AssociationPane());
         this.add(UtilEditor.createTabPane(this,mapStPa),2,0);

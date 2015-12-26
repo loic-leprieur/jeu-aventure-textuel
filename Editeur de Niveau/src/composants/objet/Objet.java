@@ -1,4 +1,4 @@
-package composants;
+package composants.objet;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -65,7 +65,7 @@ public class Objet implements Comparable<Objet>{
 
     @Override
     public String toString(){
-        return nom + ":" + description + ":" + prenable + ":" + image;
+        return getNom() + ":" + getDescription() + ":" + isPrenable() + ":" + getImage();
     }
 
      @Override
@@ -87,6 +87,6 @@ public class Objet implements Comparable<Objet>{
 
     @Override
     public int compareTo(Objet o) {
-        return nom.getValue().compareTo(o.getNom());
+        return getNom().compareTo(o.getNom());
     }
 }

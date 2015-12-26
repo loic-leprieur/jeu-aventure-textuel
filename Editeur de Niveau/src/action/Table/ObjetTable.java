@@ -1,6 +1,6 @@
 package action.table;
 
-import composants.Objet;
+import composants.objet.Objet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -13,13 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class ObjetTable extends TableView<Objet>  {
 
     //Liste des objets
-    public static ObservableList<Objet> itemListViewObjet;
+    public static ObservableList<Objet> objet;
 
     /**
      * Constructeur de ObjetTable
      */
     public ObjetTable(){
-        itemListViewObjet = FXCollections.observableArrayList();
+        objet = FXCollections.observableArrayList();
 
         TableColumn nom = new TableColumn("Nom");
         nom.setCellValueFactory(new PropertyValueFactory<Objet,String>("nom"));
@@ -32,7 +32,7 @@ public class ObjetTable extends TableView<Objet>  {
 
         this.getColumns().addAll(nom,description,prenable,image);
         this.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        this.setItems(itemListViewObjet);
+        this.setItems(objet);
     }
 
     /**
@@ -40,7 +40,7 @@ public class ObjetTable extends TableView<Objet>  {
      * @param o Objet
      */
     public static void addItem(Objet o){
-        itemListViewObjet.add(o);
+        objet.add(o);
     }
 
 }
