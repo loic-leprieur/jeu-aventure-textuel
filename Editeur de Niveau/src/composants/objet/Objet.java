@@ -3,7 +3,7 @@ package composants.objet;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Classe composants.Objet
+ * Classe Objet
  */
 public class Objet implements Comparable<Objet>{
 
