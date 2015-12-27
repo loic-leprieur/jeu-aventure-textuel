@@ -25,7 +25,7 @@ public class ObjetTable extends TableView<Objet>  {
         objet = FXCollections.observableArrayList();
         this.setEditable(true);
 
-        //Table Nom
+        //table Nom
         TableColumn nom = new TableColumn("Nom");
         nom.setCellValueFactory(new PropertyValueFactory<Objet,String>("nom"));
         nom.setCellFactory(TextFieldTableCell.<Objet>forTableColumn());
@@ -36,7 +36,7 @@ public class ObjetTable extends TableView<Objet>  {
             }
         });
 
-        //Table Description
+        //table Description
         TableColumn description = new TableColumn("Description");
         description.setCellValueFactory(new PropertyValueFactory<Objet,String>("description"));
         description.setCellFactory(TextFieldTableCell.<Objet>forTableColumn());
@@ -47,7 +47,7 @@ public class ObjetTable extends TableView<Objet>  {
             }
         });
 
-        //Table Prenable
+        //table Prenable
         TableColumn prenable = new TableColumn("Prenable");
         prenable.setCellValueFactory(new PropertyValueFactory<Objet,String>("prenable"));
         prenable.setCellFactory(TextFieldTableCell.<Objet>forTableColumn());
@@ -58,7 +58,7 @@ public class ObjetTable extends TableView<Objet>  {
             }
         });
 
-        //Table Image
+        //table Image
         TableColumn image = new TableColumn("Image");
         image.setCellValueFactory(new PropertyValueFactory<Objet,String>("image"));
         image.setCellFactory(TextFieldTableCell.<Objet>forTableColumn());
