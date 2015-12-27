@@ -28,14 +28,10 @@ public abstract class GridPaneEditeur extends GridPane {
         ajouter.setOnAction(actionEvent -> pf.show());
         this.add(ajouter,1,0);
 
-        Button modifier = UtilEditor.createButton(this,"Modifier",true,false);
-        modifier.setOnAction(actionEvent -> pf.show());
-        this.add(modifier,2,0);
-
         Button supprimer = UtilEditor.createButton(this,"Supprimer",true,false);
-        this.add(supprimer,3,0);
+        this.add(supprimer,2,0);
 
-        this.add(table ,1,1,3,1);
+        this.add(table ,1,1,2,1);
     }
 
 }
