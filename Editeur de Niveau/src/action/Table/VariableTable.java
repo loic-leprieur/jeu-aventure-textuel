@@ -20,7 +20,9 @@ public class VariableTable extends TableView {
 
         TableColumn nom = new TableColumn("Nom");
         nom.setCellValueFactory(new PropertyValueFactory<Objet,String>("nom"));
-        TableColumn valeur = new TableColumn("valeur");
+
+
+        TableColumn valeur = new TableColumn("Valeur");
         valeur.setCellValueFactory(new PropertyValueFactory<Objet,String>("valeur"));
 
 
