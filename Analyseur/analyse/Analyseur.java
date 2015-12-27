@@ -38,6 +38,9 @@ public class Analyseur {
 		if(tab.length==4){
 			//le premier est un verbe, le deuxieme est un nom, le troisieme une preposition, le quatrieme un nom
 		}
+		if(tab.length<=1 || tab.length>=5){
+			//leve le cas de phrase incorrecte 
+		}
 	}
 
 }
