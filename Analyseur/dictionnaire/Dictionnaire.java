@@ -28,19 +28,21 @@ public class Dictionnaire {
 	 * Si une des actions (clé de la map)
 	 * contient ce synonyme alors l'action est retournée.
 	 * 
-	 * TODO : récupérer la clé courante
 	 * 
 	 * @param actionRentree
 	 * @return action recherché si trouvée
 	 */
 	public String getAction(String actionRentree){
-		String res;
-		for(String syno : synonymes.get(actionRentree)){
-			if(syno.equals(actionRentree)){
-				res = ""; // clé contenant la liste de synonymes
+		String res = "";
+		
+		for(String clé : synonymes.keySet()){
+			for(String valeur : synonymes.get(clé)){
+				if(valeur.equalsIgnoreCase(actionRentree)){
+					res = clé;
+				}
 			}
 		}
-		return actionRentree;
+		return res;
 	}
 	
 	public Map<String, List<String>> getActionsPossibles() {
