@@ -23,7 +23,7 @@ public class Analyseur {
 	}
 	
 	/**
-	 * méthode qui va analyser la phrase et faire les appel à dictionnaire qu'il faut 
+	 * methode qui va analyser la phrase et faire les appel à dictionnaire qu il faut 
 	 */
 	public static void analyserPhrase(){
 		
