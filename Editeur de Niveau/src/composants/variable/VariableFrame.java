@@ -30,7 +30,7 @@ public class VariableFrame extends ParentFrame {
         final TextArea valeur = UtilEditor.createTextArea(pane,null,true,false);
         pane.add(valeur,1,1);
 
-        final Button b = UtilEditor.createButton(pane,"Ajouter",null,true,false);
+        final Button b = UtilEditor.createButton(pane,"Ajouter",true,false);
         b.setOnAction(new VariableBouton(nom,valeur));
         pane.add(b,2,0,1,2);
 

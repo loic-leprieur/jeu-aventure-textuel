@@ -40,7 +40,7 @@ public class ObjetFrame extends ParentFrame {
         final ComboBox<String> image = UtilEditor.createComboBox(pane, ObservableListImage.imageObjetList);
         pane.add(image,3,1);
 
-        final Button b = UtilEditor.createButton(pane,"Ajouter",null,true,false);
+        final Button b = UtilEditor.createButton(pane,"Ajouter",true,false);
         b.setOnAction(new ObjetBouton(nom,description,prenable,image));
         pane.add(b,4,0,1,2);
 

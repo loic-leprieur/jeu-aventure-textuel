@@ -13,7 +13,7 @@ public class Objet implements Comparable<Objet>{
     //Description de l'objet
     private SimpleStringProperty description;
     //Prenabilité de l'objet
-    private SimpleBooleanProperty prenable;
+    private SimpleStringProperty prenable;
     //Lien vers l'image de l'objet
     private SimpleStringProperty  image;
 
@@ -24,10 +24,10 @@ public class Objet implements Comparable<Objet>{
      * @param prenable Prenabilité de l'objet
      * @param image Lien vers Image de l'objet
      */
-    public Objet(String nom,String description,boolean prenable,String image){
+    public Objet(String nom,String description,String prenable,String image){
         this.nom = new SimpleStringProperty(nom.trim());
         this.description = new SimpleStringProperty(description.trim());
-        this.prenable = new SimpleBooleanProperty(prenable);
+        this.prenable = new SimpleStringProperty(prenable);
         this.image = new SimpleStringProperty(image.trim());
     }
 
@@ -57,15 +57,47 @@ public class Objet implements Comparable<Objet>{
 
     /**
      * Retourne si l'objet est prenable
-     * @return boolean
+     * @return String
      */
-    public boolean isPrenable() {
+    public String getPrenable() {
         return prenable.get();
+    }
+
+    /**
+     * Défini le nom de l'objet
+     * @param nom Nom de l'objet
+     */
+    public void setNom(String nom) {
+        this.nom.set(nom);
+    }
+
+    /**
+     * Défini la description de l'objet
+     * @param description Description de l'objet
+     */
+    public void setDescription(String description) {
+        this.description.set(description);
+    }
+
+    /**
+     * Défini si l'objet est prenable ou non
+     * @param prenable Prenable ou non
+     */
+    public void setPrenable(String prenable) {
+        this.prenable.set(prenable);
+    }
+
+    /**
+     * Défini le nom de l'image
+     * @param image Nom Image
+     */
+    public void setImage(String image) {
+        this.image.set(image);
     }
 
     @Override
     public String toString(){
-        return getNom() + ":" + getDescription() + ":" + isPrenable() + ":" + getImage();
+        return getNom() + ":" + getDescription() + ":" + getPrenable() + ":" + getImage();
     }
 
      @Override

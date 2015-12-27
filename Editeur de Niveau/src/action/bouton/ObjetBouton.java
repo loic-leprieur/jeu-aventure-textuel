@@ -8,6 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import action.table.ObjetTable;
+import util.Constante;
 
 /**
  * Classe bouton ObjetBouton
@@ -41,8 +42,8 @@ public class ObjetBouton implements EventHandler<ActionEvent> {
         //Recupération du nom
         String texteNom = nom.getText();
         int tailleNom = texteNom.length();
-        if(tailleNom > 16 || tailleNom<2){
-            alert.setContentText("Le nom doit au moins contenir 2 lettres et maximum 16 lettres.\nActuellement, votre nom comporte " + tailleNom + " lettre(s), cette valeur est incorrecte.");
+        if(tailleNom > Constante.TAILLE_NOM_OBJET_MAX || tailleNom < Constante.TAILLE_NOM_OBJET_MIN){
+            alert.setContentText("Le nom doit au moins contenir " + Constante.TAILLE_NOM_OBJET_MIN + " lettres et maximum " + Constante.TAILLE_NOM_OBJET_MAX + " lettres.\nActuellement, votre nom comporte " + tailleNom + " lettre(s), cette valeur est incorrecte.");
             alert.show();
             return;
         }
@@ -50,19 +51,29 @@ public class ObjetBouton implements EventHandler<ActionEvent> {
         //Récupération de la descritpion
         String texteDescription = description.getText();
         int tailleDescritpion = texteDescription.length();
-        if(tailleDescritpion>40 || tailleDescritpion<2){
-            alert.setContentText("La description doit au moins contenir 2 lettres et maximum 40 lettres.\nActuellement, votre description comporte " + tailleNom + " lettre(s), cette valeur est incorrecte.");
+        if(tailleDescritpion > Constante.TAILLE_DESCRIPTION_OBJET_MAX || tailleDescritpion < Constante.TAILLE_DESCRIPTION_OBJET_MIN){
+            alert.setContentText("La description doit au moins contenir " + Constante.TAILLE_DESCRIPTION_OBJET_MIN + " lettres et maximum " + Constante.TAILLE_DESCRIPTION_OBJET_MAX + " lettres.\nActuellement, votre description comporte " + tailleNom + " lettre(s), cette valeur est incorrecte.");
             alert.show();
             return;
         }
 
         //Récupération de la checkbox Prenable
-        boolean boolPrenable = prenable.isSelected();
+        String textePrenable;
+        if(prenable.isSelected()){
+            textePrenable = "true";
+        }else{
+            textePrenable = "false";
+        }
 
         //Récupération du chemin de l'image
         String texteImage = image.getValue();
+        if(image==null || texteImage.equals("")){
+            alert.setContentText("Un objet doit forcément être relié à une image");
+            alert.show();
+            return;
+        }
 
-        Objet objet = new Objet(texteNom,texteDescription,boolPrenable,texteImage);
+        Objet objet = new Objet(texteNom,texteDescription,textePrenable,texteImage);
 
         //Vérification objet n'est pas déjà présent
         if (ObjetTable.objet.contains(objet)){

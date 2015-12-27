@@ -95,13 +95,12 @@ public class UtilEditor {
      * @param heightProperty Parametre de hauteur
      * @return Button
      */
-    public static Button createButton(Pane pane, String titre, ParentFrame pf,boolean widthProperty,boolean heightProperty){
+    public static Button createButton(Pane pane, String titre,boolean widthProperty,boolean heightProperty){
         Button b = new Button(titre);
         if(pane != null){
             if(widthProperty)b.prefWidthProperty().bind(pane.widthProperty());
             if(heightProperty)b.prefHeightProperty().bind(pane.heightProperty());
         }
-        if(pf != null) b.setOnAction(actionEvent -> pf.show());
         return b;
     }
 
