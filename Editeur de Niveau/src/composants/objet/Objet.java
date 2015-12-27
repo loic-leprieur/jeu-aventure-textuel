@@ -1,6 +1,5 @@
 package composants.objet;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
