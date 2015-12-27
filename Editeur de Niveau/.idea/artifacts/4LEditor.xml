@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="4LEditor">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="4LEditor.jar">
+      <element id="module-output" name="Editeur de Niveau" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
