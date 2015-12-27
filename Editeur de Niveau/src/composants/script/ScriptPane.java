@@ -2,7 +2,7 @@ package composants.script;
 
 import composants.GridPaneEditeur;
 import javafx.scene.control.TextArea;
-import composants.ScriptTextVue;
+import action.table.ScriptTextVue;
 
 /**
  * Classe ScriptPane

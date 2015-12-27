@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.UtilEditor;
 
+import java.util.stream.Collectors;
+
 /**
  * Classe ObservableListImage contenant les ObservableList pour les images
  */
@@ -19,14 +21,10 @@ public class ObservableListImage {
      */
     public static void rafraichirImage(){
         imageObjetList.clear();
-        for(String s : UtilEditor.getCheminImage(UtilEditor.ImageType.OBJET)){
-            imageObjetList.add(s);
-        }
+        imageObjetList.addAll(UtilEditor.getCheminImage(UtilEditor.ImageType.OBJET).stream().collect(Collectors.toList()));
 
         imageSalleList.clear();
-        for(String s : UtilEditor.getCheminImage(UtilEditor.ImageType.SALLE)){
-            imageSalleList.add(s);
-        }
+        imageSalleList.addAll(UtilEditor.getCheminImage(UtilEditor.ImageType.SALLE).stream().collect(Collectors.toList()));
     }
 
 }
