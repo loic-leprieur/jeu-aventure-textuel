@@ -31,12 +31,18 @@ public class Analyseur {
 		
 		if(tab.length==2){
 			//le premier est un verbe le deuxieme est un nom 
+			//comparaison du premier mot avec les VERBES du dico etc 
+			//si non présent : phrase non comprise
 		}
 		if(tab.length==3){
 			//le prmier est un verbe, le deuxieme est une preposition, le troisieme est un nom 
+			//comparaison du premier mot avec les VERBES du dico etc 
+			//si non présent : phrase non comprise
 		}
 		if(tab.length==4){
 			//le premier est un verbe, le deuxieme est un nom, le troisieme une preposition, le quatrieme un nom
+			//comparaison du premier mot avec les VERBES du dico etc 
+			//si non présent : phrase non comprise
 		}
 		if(tab.length<=1 || tab.length>=5){
 			//leve le cas de phrase incorrecte 
