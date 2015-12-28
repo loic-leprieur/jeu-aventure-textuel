@@ -16,6 +16,7 @@ public class Objet implements Comparable<Objet>{
     //Lien vers l'image de l'objet
     private SimpleStringProperty  image;
 
+
     /**
      * Constructeur d'un composants.Objet
      * @param nom Nom de l'objet
@@ -120,4 +121,5 @@ public class Objet implements Comparable<Objet>{
     public int compareTo(Objet o) {
         return getNom().compareTo(o.getNom());
     }
+
 }

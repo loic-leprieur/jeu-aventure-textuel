@@ -85,7 +85,6 @@ public class ObjetBouton implements EventHandler<ActionEvent> {
         }
 
         ObjetTable.addItem(objet);
-        Script.refresh();
         this.clear();
     }
 

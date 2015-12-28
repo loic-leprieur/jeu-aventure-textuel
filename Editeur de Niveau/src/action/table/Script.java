@@ -1,10 +1,8 @@
 package action.table;
 
-import com.sun.java.swing.plaf.windows.WindowsInternalFrameTitlePane;
 import composants.objet.Objet;
 import composants.variable.Variable;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.control.TextArea;
 
 
@@ -20,7 +18,7 @@ public class Script extends TextArea {
 	}
 
 	/**
-	 * Methode servant a actualisé le contenu de la zone de script
+	 * Methode servant a actualisï¿½ le contenu de la zone de script
 	 */
 	public static void refresh(){
 		String scriptFinal = "";

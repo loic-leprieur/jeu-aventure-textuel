@@ -60,7 +60,6 @@ public class VariableBouton implements EventHandler<ActionEvent> {
         }
 
         VariableTable.addItem(v);
-        Script.refresh();
         this.clear();
     }
 
