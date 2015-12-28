@@ -37,6 +37,23 @@ public class Script extends TextArea {
 		objet += "\n";
 
 		scriptFinal += objet;
+		
+		//String salle = "##SALLE##\n";
+		//for(Salle sal : SalleTable.objet){
+		//	salle += sal.toString() + "\n";
+		//}
+		//salle += "\n";
+
+		//scriptFinal += salle;
+		
+		//String lien_salle = "##LIENS##\n";
+		//for(Lien l : LienTable.lien){
+		//	lien += lien_salle.toString() + "\n";
+		//}
+		//lien_salle += "\n";
+
+		//scriptFinal += lien_salle;
+		
 
 		script.set(scriptFinal);
 	}
