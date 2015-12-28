@@ -1,36 +1,47 @@
 package action.table;
 
-import javafx.collections.ObservableList;
-import javafx.event.Event;
+import com.sun.java.swing.plaf.windows.WindowsInternalFrameTitlePane;
+import composants.objet.Objet;
+import composants.variable.Variable;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.TextArea;
 
-import java.util.Observable;
-import java.util.Observer;
-
-import composants.objet.Objet;
 
 /**
  * Vue de la TextArea pour le script
  */
 public class Script extends TextArea {
-	
-	private String variable;
-	private String objet;
-	private String salle;
-	private String relation_objet;
-	private String relation_salle;
-	private String action;
-	
-	
-	public Script() {
-		super();
-		this.setEditable(false);
-		
+
+	public static SimpleStringProperty script;
+
+	public Script(){
+		script = new SimpleStringProperty();
 	}
-	
-	
-	
-	
-	
+
+	public static void refresh(){
+		String scriptFinal = "";
+
+		String variable = "##VARIABLE##\n";
+		for(Variable va : VariableTable.variable){
+			variable += va.toString() + "\n";
+		}
+		variable += "\n";
+
+		scriptFinal += variable;
+
+		String objet = "##OBJET##\n";
+		for(Objet obj : ObjetTable.objet){
+			objet += obj.toString() + "\n";
+		}
+		objet += "\n";
+
+		scriptFinal += objet;
+
+		script.set(scriptFinal);
+	}
+
+
+
 	
 }

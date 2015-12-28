@@ -1,5 +1,7 @@
 package action.bouton;
 
+import action.table.Script;
+import com.sun.java.swing.plaf.windows.WindowsInternalFrameTitlePane;
 import composants.objet.Objet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -83,6 +85,7 @@ public class ObjetBouton implements EventHandler<ActionEvent> {
         }
 
         ObjetTable.addItem(objet);
+        Script.refresh();
         this.clear();
     }
 

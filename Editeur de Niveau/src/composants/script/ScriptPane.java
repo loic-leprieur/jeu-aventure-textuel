@@ -13,9 +13,15 @@ public class ScriptPane extends GridPaneEditeur {
      * Constructeur de ScriptPane
      */
     public ScriptPane(){
-        TextArea ta = new Script();
+        final TextArea ta = new Script();
         ta.prefWidthProperty().bind(this.widthProperty());
         ta.prefHeightProperty().bind(this.heightProperty());
+        ta.setEditable(false);
+        ta.textProperty().bindBidirectional(Script.script);
+        Script.script.addListener((observable, oldValue, newValue) -> {
+            ta.setText(newValue);
+        });
         this.add(ta,1,0);
+        Script.refresh();
     }
 }

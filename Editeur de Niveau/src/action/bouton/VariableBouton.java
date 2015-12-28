@@ -1,5 +1,6 @@
 package action.bouton;
 
+import action.table.Script;
 import action.table.VariableTable;
 import composants.variable.Variable;
 import javafx.event.ActionEvent;
@@ -59,6 +60,7 @@ public class VariableBouton implements EventHandler<ActionEvent> {
         }
 
         VariableTable.addItem(v);
+        Script.refresh();
         this.clear();
     }
 
