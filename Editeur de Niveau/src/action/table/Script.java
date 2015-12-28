@@ -19,6 +19,9 @@ public class Script extends TextArea {
 		script = new SimpleStringProperty();
 	}
 
+	/**
+	 * Methode servant a actualisé le contenu de la zone de script
+	 */
 	public static void refresh(){
 		String scriptFinal = "";
 
