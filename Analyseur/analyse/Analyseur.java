@@ -35,7 +35,7 @@ public class Analyseur {
 			//le premier est un verbe le deuxieme est un nom 
 			//comparaison du premier mot avec les VERBES du dico etc 
 			//si non pr�sent : phrase non comprise
-			if(comparerVerbe(tab[0]) && comparerNom(tab[1])){
+			if(comparerVerbe(tab[0])!=null && comparerNom(tab[1])!=null){
 
 			}else{
 				//faire en sorte dafficher message d erreur 
@@ -45,7 +45,7 @@ public class Analyseur {
 			//le prmier est un verbe, le deuxieme est une preposition, le troisieme est un nom 
 			//comparaison du premier mot avec les VERBES du dico etc 
 			//si non pr�sent : phrase non comprise
-			if(comparerVerbe(tab[0]) && comparerPrepo(tab[1]) && comparerNom(tab[2]) ){
+			if(comparerVerbe(tab[0])!=null && comparerPrepo(tab[1])!=null && comparerNom(tab[2])!=null ){
 
 			}else{
 				//faire en sorte dafficher message d erreur 
@@ -56,7 +56,7 @@ public class Analyseur {
 			//le premier est un verbe, le deuxieme est un nom, le troisieme une preposition, le quatrieme un nom
 			//comparaison du premier mot avec les VERBES du dico etc 
 			//si non pr�sent : phrase non comprise
-			if(comparerVerbe(tab[0]) && comparerNom(tab[1]) && comparerPrepo(tab[2]) && comparerNom(tab[3]) ){
+			if(comparerVerbe(tab[0])!=null && comparerNom(tab[1])!=null && comparerPrepo(tab[2])!=null && comparerNom(tab[3])!=null ){
 
 			}else{
 				//faire en sorte dafficher message d erreur 
@@ -72,8 +72,8 @@ public class Analyseur {
 	/**
 	 * méthode pour comparer les verbes avec le dictionnaire 
 	 */
-	public static boolean comparerVerbe(String s){
-		boolean res = false;
+	public static String comparerVerbe(String s){
+		String res = null;
 		//si on trouve on met vrai 
 		return res;
 
@@ -82,8 +82,8 @@ public class Analyseur {
 	/**
 	 * méthode pour comparer les prepositions avec le dictionnaire 
 	 */
-	public static boolean comparerPrepo(String s){
-		boolean res = false;
+	public static String comparerPrepo(String s){
+		String res = null;
 		//si on trouve on met vrai 
 		return res;
 
@@ -93,8 +93,8 @@ public class Analyseur {
 	/**
 	 * méthode pour comparer les nom avec le dictionnaire 
 	 */
-	public static boolean comparerNom(String s){
-		boolean res = false;
+	public static String comparerNom(String s){
+		String res = null;
 		//si on trouve on met vrai 
 		return res;
 
