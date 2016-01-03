@@ -74,7 +74,7 @@ public class Analyseur {
 	 */
 	public static String comparerVerbe(String s){
 		String res = null;
-		//si on trouve on met vrai 
+		//si on trouve on met le mot 
 		return res;
 
 	}
@@ -84,7 +84,7 @@ public class Analyseur {
 	 */
 	public static String comparerPrepo(String s){
 		String res = null;
-		//si on trouve on met vrai 
+		//si on trouve on met le mot 
 		return res;
 
 	}
@@ -95,7 +95,7 @@ public class Analyseur {
 	 */
 	public static String comparerNom(String s){
 		String res = null;
-		//si on trouve on met vrai 
+		//si on trouve on met le mot 
 		return res;
 
 	}
