@@ -23,15 +23,16 @@ public class Analyseur {
 	}
 
 	/**
-	 * methode qui va analyser la phrase et faire les appels � dictionnaire qu il faut 
+	 * methode qui va analyser la phrase et faire les appels sur dictionnaire qu il faut 
 	 */
 	public static void analyserPhrase(){
 		//TODO pas assez d'éléments pour finir vraiment 
 		String[] tab = aAnalyser.split(" ");
 		//nb : pour ce qui suit on a besoin d'une d�composition du dico 
 
+		switch(tab.length){
 		//note sur les longueurs : correspond aux regles de syntaxe
-		if(tab.length==2){
+		case 2:
 			//le premier est un verbe le deuxieme est un nom 
 			//comparaison du premier mot avec les VERBES du dico etc 
 			//si non pr�sent : phrase non comprise
@@ -40,35 +41,37 @@ public class Analyseur {
 			}else{
 				//faire en sorte dafficher message d erreur 
 			}
-		}
-		if(tab.length==3){
-			//le prmier est un verbe, le deuxieme est une preposition, le troisieme est un nom 
+			break;
+		case 3: 
+			//le premier est un verbe, le deuxieme est une preposition, le troisieme est un nom 
 			//comparaison du premier mot avec les VERBES du dico etc 
-			//si non pr�sent : phrase non comprise
+			//si non present : phrase non comprise
 			if(comparerVerbe(tab[0])!=null && comparerPrepo(tab[1])!=null && comparerNom(tab[2])!=null ){
 
 			}else{
 				//faire en sorte dafficher message d erreur 
 			}
 
-		}
-		if(tab.length==4){
+			break;
+		case 4:
 			//le premier est un verbe, le deuxieme est un nom, le troisieme une preposition, le quatrieme un nom
 			//comparaison du premier mot avec les VERBES du dico etc 
-			//si non pr�sent : phrase non comprise
+			//si non present : phrase non comprise
 			if(comparerVerbe(tab[0])!=null && comparerNom(tab[1])!=null && comparerPrepo(tab[2])!=null && comparerNom(tab[3])!=null ){
 
 			}else{
 				//faire en sorte dafficher message d erreur 
 			}
 
-		}
-		if(tab.length<=1 || tab.length>=5){
+			break;
+
+		default :
 			//leve le cas de phrase incorrecte 
+			break;
 		}
 	}
 
-	//TODO : implémenter, voir pour réagencer sous la forme d'une classe abstraite comparaison 
+	//TODO : implémenter, voir pour reagencer sous la forme d'une classe abstraite comparaison 
 	/**
 	 * méthode pour comparer les verbes avec le dictionnaire 
 	 */
