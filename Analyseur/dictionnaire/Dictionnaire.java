@@ -24,12 +24,14 @@ public class Dictionnaire {
 	}
 	
 	/**
-	 * cherche l'action associée à un synonyme donnée. 
-	 * Si une des actions (clé de la map)
-	 * contient ce synonyme alors l'action est retournée.
+	 * cherche le verbe associé à un synonyme donné.
+	 * Si une des actions (clé de la map de type verbe)
+	 * contient ce synonyme alors le mot est retourné.
 	 * 
 	 * @param synonymeAaction
-	 * @return le verbe recherché si il existe
+	 * @return le verbe associé au synonyme
+	 * 
+	 * TODO : lever une exception si le verbe n'existe pas
 	 */
 	public Mot getAction(String synonymeAaction){
 		Mot verbeTrouve = new Verbe("");
@@ -43,8 +45,20 @@ public class Dictionnaire {
 		return verbeTrouve;
 	}
 	
-	public Map<Mot, List<String>> getActionsPossibles() {
-		return synonymes;
+	/**
+	 * retourne la liste de tous les
+	 * synonymes des verbes existant
+	 * @return List<String>
+	 */
+	public List<String> getActionsPossibles() {
+		List<String> tousLesVerbesPossibles = null;
+		for (Mot mot : synonymes.keySet()) {
+			for (String syn : synonymes.get(mot)) {
+				if(mot.type == "verbe")
+					tousLesVerbesPossibles.add(syn);
+;			}
+		}
+		return tousLesVerbesPossibles;
 	}
 
 	public void setActionsPossibles(HashMap< Mot, List<String> > syn) {
