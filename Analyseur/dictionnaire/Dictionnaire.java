@@ -14,8 +14,8 @@ public class Dictionnaire {
 	// ensemble des mots interprétés 
 	private HashMap<Mot, List<String>> synonymes;
 	
-	public Dictionnaire(){
-		this.synonymes = new HashMap<Mot, List<String>>();
+	public Dictionnaire(HashMap<Mot, List<String>> dico){
+		this.synonymes = dico;
 	}
 	
 
