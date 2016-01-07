@@ -12,15 +12,15 @@ import java.util.Map;
 
 public class Dictionnaire {
 	// ensemble des mots interprétés 
-	private Map<String, List<String>> synonymes;
+	private HashMap<Mot, List<String>> synonymes;
 	
 	public Dictionnaire(){
-		this.synonymes = new HashMap<String, List<String>>();
+		this.synonymes = new HashMap<Mot, List<String>>();
 	}
 	
 
-	public void ajouterNouvelleAction(String action, List<String> synonymes){
-		((Map<String, List<String>>) synonymes).put(action, synonymes); 
+	public void ajouterNouvelleAction(Mot action, List<String> lSyn){
+		this.synonymes.put(action, lSyn); 
 	}
 	
 	/**
@@ -28,28 +28,26 @@ public class Dictionnaire {
 	 * Si une des actions (clé de la map)
 	 * contient ce synonyme alors l'action est retournée.
 	 * 
-	 * 
-	 * @param actionRentree
-	 * @return action recherché si trouvée
+	 * @param synonymeAaction
+	 * @return le verbe recherché si il existe
 	 */
-	public String getAction(String actionRentree){
-		String res = "";
-		
-		for(String clé : synonymes.keySet()){
-			for(String valeur : synonymes.get(clé)){
-				if(valeur.equalsIgnoreCase(actionRentree)){
-					res = clé;
+	public Mot getAction(String synonymeAaction){
+		Mot verbeTrouve = new Verbe("");
+		for(Mot cle : synonymes.keySet()){
+			for(String valeur : synonymes.get(cle)){
+				if(valeur.equalsIgnoreCase(synonymeAaction) && cle.getType() == "verbe"){
+					verbeTrouve = cle;
 				}
 			}
 		}
-		return res;
+		return verbeTrouve;
 	}
 	
-	public Map<String, List<String>> getActionsPossibles() {
+	public Map<Mot, List<String>> getActionsPossibles() {
 		return synonymes;
 	}
 
-	public void setActionsPossibles(Map< String, List<String> > syn) {
+	public void setActionsPossibles(HashMap< Mot, List<String> > syn) {
 		this.synonymes = syn;
 	}
 }
