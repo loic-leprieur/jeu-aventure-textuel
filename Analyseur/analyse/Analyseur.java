@@ -1,7 +1,8 @@
+package analyse;
 /**
  * 
  */
-package analyse;
+
 
 import dictionnaire.*;
 
