@@ -12,9 +12,11 @@ import java.util.List;
 public class Dictionnaire {
 	// ensemble des mots interprétés 
 	private HashMap<Mot, List<String>> synonymes;
-	
-	public Dictionnaire(){
-		this.synonymes = new HashMap<Mot, List<String>>();
+	private Mot[] mots = new Mot[2];
+
+	public Dictionnaire(Mot[] mots){
+		//this.synonymes = new HashMap<Mot, List<String>>();
+		this.mots = mots;
 	}
 	
 
@@ -43,6 +45,10 @@ public class Dictionnaire {
 		}
 		return verbeTrouve;
 	}
+
+	public Mot getVerbe(){
+		return mots[0];
+	}
 	
 	/**
 	 * retourne la liste de tous les
@@ -55,9 +61,13 @@ public class Dictionnaire {
 			for (String syn : synonymes.get(mot)) {
 				if(mot.type == "verbe")
 					tousLesVerbesPossibles.add(syn);
-;			}
+			}
 		}
 		return tousLesVerbesPossibles;
+	}
+
+	public Mot getNom(){
+		return this.mots[2];
 	}
 
 	public void setActionsPossibles(HashMap< Mot, List<String> > syn) {
