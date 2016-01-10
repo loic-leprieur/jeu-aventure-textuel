@@ -4,11 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import source.Niveau;
+import source.moteur.analyseur.Phrase;
 import source.moteur.analyseur.analyse.Analyseur;
 import source.moteur.analyseur.dictionnaire.Complement;
 import source.moteur.analyseur.dictionnaire.Dictionnaire;
 import source.moteur.analyseur.dictionnaire.Mot;
 import source.moteur.analyseur.dictionnaire.Verbe;
+import source.moteur.regles.Regle;
 
 /**
  * Controler de la zone texte de l'utilisateur
@@ -36,7 +38,8 @@ public class Controler implements EventHandler<ActionEvent> {
             tf.setText("");
             this.niveau.ajouterLog(txt);
             Analyseur analyseur = new Analyseur(dico, txt);
-            this.niveau.ajouterLog(analyseur.analyserPhrase());
+            Phrase phrase = analyseur.analyserPhrase();
+            this.niveau.ajouterLog(Regle.analyser(phrase));
 
         }
     }
