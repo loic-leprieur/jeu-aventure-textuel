@@ -4,6 +4,7 @@
 package source.moteur.analyseur.analyse;
 
 
+import source.moteur.analyseur.Phrase;
 import source.moteur.analyseur.dictionnaire.Dictionnaire;
 import source.moteur.regles.Regle;
 
@@ -28,6 +29,7 @@ public class Analyseur {
 	 */
 	public static String analyserPhrase(){
 		String[] tab = aAnalyser.split(" ");
+		Phrase phrase;
 		String res = "";
 		//nb : pour ce qui suit on a besoin d'une decomposition du dico
 
@@ -38,7 +40,8 @@ public class Analyseur {
 			//comparaison du premier mot avec les VERBES du dico etc 
 			//si non present : phrase non comprise
 			//if(comparerVerbe(tab[0])!=null && comparerNom(tab[1])!=null){
-				res = Regle.manger(tab[1]);
+			phrase = new Phrase(tab[0],tab[1]);
+			res = Regle.analyser(phrase);
 			//}else{
 				//faire en sorte dafficher message d erreur
 				//System.out.println("Mots inconnus");
