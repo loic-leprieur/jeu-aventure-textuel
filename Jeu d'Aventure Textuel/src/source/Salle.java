@@ -1,5 +1,6 @@
 package source;
 
+import javafx.scene.image.Image;
 import source.moteur.Direction;
 import source.moteur.exception.ObjetDejaExistantDansSalleException;
 import source.moteur.exception.ObjetPasDansSalleException;
@@ -18,7 +19,7 @@ public class Salle {
 
     private String nom;
     private String description;
-    private BufferedImage image;
+    private Image image;
     private List<Objet> objets;
     private Map<Direction,Salle> liens;
 
@@ -28,7 +29,7 @@ public class Salle {
      * @param description Description salle
      * @param image Image salle
      */
-    public Salle(String nom,String description,BufferedImage image){
+    public Salle(String nom,String description,Image image){
         this.nom = nom;
         this.description = description;
         this.image = image;
@@ -44,7 +45,7 @@ public class Salle {
      * @param objets Objet de la salle
      * @param liens Lien qui relie les salles
      */
-    public Salle(String nom,String description,BufferedImage image,List<Objet> objets, Map<Direction,Salle> liens){
+    public Salle(String nom,String description,Image image,List<Objet> objets, Map<Direction,Salle> liens){
         this.nom = nom;
         this.description = description;
         this.image = image;
@@ -142,7 +143,7 @@ public class Salle {
         return description;
     }
 
-    public BufferedImage getImage() {
+    public Image getImage() {
         return image;
     }
 

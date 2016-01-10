@@ -1,5 +1,7 @@
 package source;
 
+import javafx.scene.image.Image;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -11,7 +13,7 @@ public class Objet {
     private String description;
     private boolean prenable;
     private boolean visible;
-    private BufferedImage image;
+    private Image image;
     private int x;
     private int y;
 
@@ -21,7 +23,7 @@ public class Objet {
      * @param description Description objet
      * @param image Image objet
      */
-    public Objet(String nom,String description,BufferedImage image){
+    public Objet(String nom,String description,Image image){
         this.nom = nom;
         this.description = description;
         this.prenable = false;
@@ -41,7 +43,7 @@ public class Objet {
      * @param x Position x objet
      * @param y Position y objet
      */
-    public Objet(String nom,String description,boolean prenable,boolean visible,BufferedImage image,int x,int y){
+    public Objet(String nom,String description,boolean prenable,boolean visible,Image image,int x,int y){
         this.nom = nom;
         this.description = description;
         this.prenable = prenable;
@@ -81,7 +83,7 @@ public class Objet {
         return visible;
     }
 
-    public BufferedImage getImage() {
+    public Image getImage() {
         return image;
     }
 
