@@ -2,7 +2,7 @@ package source.editeur.composants.association;
 
 import javafx.scene.layout.BorderPane;
 import source.editeur.composants.ParentFrame;
-import source.editeur.util.UtilEditor;
+import source.util.UtilEditor;
 
 /**
  * Classe AssociationFrame

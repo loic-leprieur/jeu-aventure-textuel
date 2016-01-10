@@ -6,7 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import source.editeur.action.bouton.VariableBouton;
 import source.editeur.composants.ParentFrame;
-import source.editeur.util.UtilEditor;
+import source.util.UtilEditor;
 
 /**
  * Classe VariableFrame

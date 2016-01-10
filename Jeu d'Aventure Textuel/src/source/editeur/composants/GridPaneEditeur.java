@@ -4,7 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
-import source.editeur.util.UtilEditor;
+import source.util.UtilEditor;
 
 /**
  * Classe GridPaneEditeur

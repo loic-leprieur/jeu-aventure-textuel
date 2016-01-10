@@ -2,7 +2,7 @@ package source.editeur.images;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import source.editeur.util.UtilEditor;
+import source.util.UtilEditor;
 
 import java.util.stream.Collectors;
 

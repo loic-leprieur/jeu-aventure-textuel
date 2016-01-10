@@ -2,7 +2,7 @@ package source.editeur;
 
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import source.editeur.util.UtilEditor;
+import source.util.UtilEditor;
 
 
 /**
@@ -16,7 +16,7 @@ public class PrincipalFrame {
     public PrincipalFrame(){
         BorderPane pane = new BorderPane();
 
-        Stage stage = UtilEditor.createStage("",1000,700, pane,true);
+        Stage stage = UtilEditor.createStage("4LEditeur",1000,700, pane,true);
 
         pane.setTop(new PaneTop(stage));
         pane.setCenter(new PaneCenter());

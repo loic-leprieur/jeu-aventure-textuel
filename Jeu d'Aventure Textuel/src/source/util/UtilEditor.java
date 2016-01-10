@@ -1,4 +1,4 @@
-package source.editeur.util;
+package source.util;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +37,7 @@ public class UtilEditor {
      */
     public static Stage createStage(String titre, int width, int height, Pane pane, boolean resizible){
         Stage stage = new Stage();
-        stage.setTitle("4LEditeur " + titre);
+        stage.setTitle(titre);
         stage.setResizable(resizible);
         pane.getStylesheets().add("source/editeur/util/style/style.css");
         pane.setStyle("-fx-background-color: white");

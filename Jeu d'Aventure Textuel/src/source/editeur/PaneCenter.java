@@ -10,7 +10,7 @@ import source.editeur.composants.objet.ObjetPane;
 import source.editeur.composants.salle.SallePane;
 import source.editeur.composants.script.ScriptPane;
 import source.editeur.composants.variable.VariablePane;
-import source.editeur.util.UtilEditor;
+import source.util.UtilEditor;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

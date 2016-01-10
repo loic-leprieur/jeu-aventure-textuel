@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 import source.editeur.action.bouton.ObjetBouton;
 import source.editeur.composants.ParentFrame;
 import source.editeur.images.ObservableListImage;
-import source.editeur.util.UtilEditor;
+import source.util.UtilEditor;
 
 /**
  * Classe ObjetFrame

@@ -1,4 +1,4 @@
-package source.editeur.util;
+package source.util;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;

@@ -4,7 +4,7 @@ package source.editeur;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import source.editeur.images.ObservableListImage;
-import source.editeur.util.UtilEditor;
+import source.util.UtilEditor;
 
 import java.io.File;
 
