@@ -1,7 +1,6 @@
 package source.moteur.grahique.pane;
 
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
  * Created by louzw on 10/01/2016.

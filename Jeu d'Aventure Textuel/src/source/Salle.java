@@ -61,17 +61,9 @@ public class Salle {
     public boolean aller(Direction direction) {
         boolean res = false;
         if(liens.containsKey(direction)){
-            liens.get(direction).afficher();
             res = true;
         }
         return res;
-    }
-
-    /**
-     * Affiche une salle
-     */
-    public void afficher(){
-        //TODO:Afficher un objet
     }
 
     /**

@@ -21,14 +21,14 @@ public class Analyseur {
 	public Analyseur(Dictionnaire dico, String ph){
 		this.dico = dico;
 		aAnalyser = ph;
-
 	}
 
 	/**
 	 * methode qui va analyser la phrase et faire les appels sur dictionnaire qu il faut 
 	 */
-	public static void analyserPhrase(){
+	public static String analyserPhrase(){
 		String[] tab = aAnalyser.split(" ");
+		String res = "";
 		//nb : pour ce qui suit on a besoin d'une decomposition du dico
 
 		switch(tab.length){
@@ -38,7 +38,7 @@ public class Analyseur {
 			//comparaison du premier mot avec les VERBES du dico etc 
 			//si non present : phrase non comprise
 			//if(comparerVerbe(tab[0])!=null && comparerNom(tab[1])!=null){
-				Regle.manger(tab[1]);
+				res = Regle.manger(tab[1]);
 			//}else{
 				//faire en sorte dafficher message d erreur
 				//System.out.println("Mots inconnus");
@@ -69,9 +69,10 @@ public class Analyseur {
 
 		default :
 			//leve le cas de phrase incorrecte
-			System.out.println("Phrase incorrecte");
+			res = "Phrase incorrecte";
 			break;
 		}
+		return res;
 	}
 
 	//TODO : implémenter, voir pour reagencer sous la forme d'une classe abstraite comparaison 

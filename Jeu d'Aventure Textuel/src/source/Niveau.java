@@ -3,16 +3,19 @@ package source;
 import source.moteur.Direction;
 import source.moteur.exception.SalleInexistanteException;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Classe niveau
  */
-public class Niveau {
+public class Niveau extends Observable{
 
     private String nom;
     private Salle salleActuel;
     private List<Salle> salles;
+    private ArrayList<String> log;
 
     /**
      * Constructeur Niveau
@@ -23,6 +26,7 @@ public class Niveau {
         this.nom = nom;
         this.salles = salles;
         this.salleActuel = salles.get(0);
+        this.log = new ArrayList<>();
     }
 
     /**
@@ -57,6 +61,23 @@ public class Niveau {
         return null;
     }
 
+    /**
+     * Ajoute les logs
+     * @param str Phrase
+     */
+    public void ajouterLog(String str){
+        log.add(str);
+        this.setChanged();
+        this.notifyObservers();
+    }
+
+    /**
+     * Affiche salle actuel
+    */
+    public void afficher(){
+
+    }
+
     public String getNom() {
         return nom;
     }
@@ -67,5 +88,9 @@ public class Niveau {
 
     public List<Salle> getSalles() {
         return salles;
+    }
+
+    public ArrayList<String> getLog(){
+        return this.log;
     }
 }

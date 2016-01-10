@@ -5,9 +5,12 @@ import source.moteur.analyseur.dictionnaire.Mot;
 
 public class Regle {
 
-    public static void manger(String nom){
+    public static String manger(String nom){
+        String res = "";
         if(nom.equals("pomme")){
-            System.out.println("Miam cette pomme est délicieuse");
+            //TODO:Action a effectuer appel aux regles
+            res = "Miam cette pomme est délicieuse";
         }
+        return res;
     }
 }

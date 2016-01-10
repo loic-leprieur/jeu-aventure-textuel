@@ -15,6 +15,10 @@ public class MenuBarTop extends MenuBar {
         //Menu Fichier
         Menu menuFichier = new Menu("Fichier");
         MenuItem menuFichierCharger = new MenuItem("Charger");
+        menuFichierCharger.setOnAction(actionEvent -> {
+
+        });
+
         MenuItem menuFichierQuitter = new MenuItem("Quitter");
         menuFichierQuitter.setOnAction(actionEvent -> Platform.exit());
 

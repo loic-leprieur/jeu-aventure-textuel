@@ -5,11 +5,13 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
+import source.Niveau;
+import source.moteur.analyseur.analyse.Analyseur;
 import source.moteur.grahique.composant.MenuBarTop;
 import source.moteur.grahique.pane.InformationPane;
 import source.moteur.grahique.pane.InventairePane;
-import source.moteur.grahique.pane.SallePane;
 import source.moteur.grahique.pane.ZoneTextePane;
+import source.moteur.grahique.vue.SalleImageViewVue;
 import source.util.UtilEditor;
 
 /**
@@ -17,20 +19,23 @@ import source.util.UtilEditor;
  */
 public class PrincipalFrame {
 
-    public PrincipalFrame(){
+    public PrincipalFrame(Niveau niveau){
         BorderPane paneRoot = new BorderPane();
-        Stage stage = UtilEditor.createStage("Moteur Graphique",1000,700, paneRoot,true);
+        Stage stage = UtilEditor.createStage("Moteur Graphique",1000,700, paneRoot,false);
 
+        paneRoot.setStyle("-fx-background-color: black;");
 
         GridPane pane = new GridPane();
 
         pane.prefWidthProperty().bind(paneRoot.widthProperty());
         pane.prefHeightProperty().bind(paneRoot.heightProperty());
 
-        pane.setGridLinesVisible(true);
-        pane.add(new SallePane(pane),0,0,2,2);
+        SalleImageViewVue sivv = new SalleImageViewVue(pane);
+        niveau.addObserver(sivv);
+
+        pane.add(sivv,0,0,2,2);
         pane.add(new InventairePane(pane),2,0,1,2);
-        pane.add(new ZoneTextePane(pane),0,2,2,1);
+        pane.add(new ZoneTextePane(pane,niveau),0,2,2,1);
         pane.add(new InformationPane(pane),2,2,1,1);
 
 
