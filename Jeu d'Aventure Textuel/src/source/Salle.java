@@ -3,6 +3,7 @@ package source;
 import source.moteur.Direction;
 import source.moteur.exception.ObjetDejaExistantDansSalleException;
 import source.moteur.exception.ObjetPasDansSalleException;
+import source.moteur.exception.SalleInexistanteException;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -122,6 +123,14 @@ public class Salle {
             this.objets.remove(index);
         }else{
             throw new ObjetPasDansSalleException(objet.getNom() + " n'est pas présent dans la salle " + this.nom);
+        }
+    }
+
+    public Salle getSalle(Direction direction) throws SalleInexistanteException {
+        if(this.liens.containsKey(direction)){
+            return this.liens.get(direction);
+        }else{
+            throw new SalleInexistanteException("La salle " + this.nom + " n'a pas de salle adjacente en direction " + direction);
         }
     }
 
