@@ -1,6 +1,6 @@
 package source.moteur.grahique;
 
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import source.util.UtilEditor;
 
@@ -10,10 +10,9 @@ import source.util.UtilEditor;
 public class PrincipalFrame {
 
     public PrincipalFrame(){
-        BorderPane pane = new BorderPane();
+        GridPane pane = new GridPane();
 
         Stage stage = UtilEditor.createStage("Moteur Graphique",1000,700, pane,true);
-
 
 
         stage.show();
