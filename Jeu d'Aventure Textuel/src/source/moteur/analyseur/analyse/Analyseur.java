@@ -34,6 +34,8 @@ public class Analyseur {
 
 		switch(tab.length){
 		//note sur les longueurs : correspond aux regles de syntaxe
+		//première itération : juste nom + verbe
+
 		case 2:
 			//le premier est un verbe le deuxieme est un nom 
 			//comparaison du premier mot avec les VERBES du dico etc 
