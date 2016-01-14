@@ -8,10 +8,6 @@ import source.Objet;
 import source.Salle;
 import source.moteur.grahique.PrincipalFrame;
 import source.moteur.analyseur.analyse.Analyseur;
-import source.moteur.analyseur.dictionnaire.Complement;
-import source.moteur.analyseur.dictionnaire.Dictionnaire;
-import source.moteur.analyseur.dictionnaire.Mot;
-import source.moteur.analyseur.dictionnaire.Verbe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +15,6 @@ import java.util.HashMap;
 public class Jeu extends Application{
 
     private Niveau niveau;
-    private Analyseur analyseur;
 
     public static void main(String[] args){
         launch(args);

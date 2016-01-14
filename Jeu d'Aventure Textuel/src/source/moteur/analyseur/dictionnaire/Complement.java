@@ -9,13 +9,9 @@ package source.moteur.analyseur.dictionnaire;
 public class Complement extends Mot {
 
 	public Complement(String nom) {
-		super(nom);
+		super(nom,Type.complement);
 	}
 
-	@Override
-	public String getType() {
-		return "complément";
-	}
 
 
 }

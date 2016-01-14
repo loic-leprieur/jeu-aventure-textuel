@@ -1,7 +1,9 @@
 package source.moteur.analyseur.dictionnaire;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -12,16 +14,16 @@ import java.util.List;
 public class Dictionnaire {
 	// ensemble des mots interprétés 
 	private HashMap<Mot, List<String>> synonymes;
-	private Mot[] mots = new Mot[2];
+	private List<Mot> mots;
 
-	public Dictionnaire(Mot[] mots){
-		//this.synonymes = new HashMap<Mot, List<String>>();
+	public Dictionnaire(List<Mot> mots){
+		this.synonymes = new HashMap<>();
 		this.mots = mots;
 	}
-	
+
 
 	public void ajouterNouvelleAction(Mot action, List<String> lSyn){
-		this.synonymes.put(action, lSyn); 
+		this.synonymes.put(action, lSyn);
 	}
 	
 	/**
@@ -38,7 +40,7 @@ public class Dictionnaire {
 		Mot verbeTrouve = new Verbe("");
 		for(Mot cle : synonymes.keySet()){
 			for(String valeur : synonymes.get(cle)){
-				if(valeur.equalsIgnoreCase(synonymeAaction) && cle.getType() == "verbe"){
+				if(valeur.equalsIgnoreCase(synonymeAaction) && cle.getType().equals(Type.verbe.toString())){
 					verbeTrouve = cle;
 				}
 			}
@@ -46,31 +48,52 @@ public class Dictionnaire {
 		return verbeTrouve;
 	}
 
-	public Mot getVerbe(){
-		return mots[0];
-	}
-	
 	/**
-	 * retourne la liste de tous les
-	 * synonymes des verbes existant
-	 * @return List<String>
-	 */
-	public List<String> getActionsPossibles() {
-		List<String> tousLesVerbesPossibles = null;
-		for (Mot mot : synonymes.keySet()) {
-			for (String syn : synonymes.get(mot)) {
-				if(mot.type == "verbe")
-					tousLesVerbesPossibles.add(syn);
+	 * Verifie si un mot est présent
+	 * @param t Type du mot
+	 * @param mot Mot a vérifier
+     * @return Trouvé ou non
+     */
+	public boolean estPresent(Type t,String mot){
+		boolean res = false;
+		for(Mot m : getMot(t)){
+			for(String s : getSynonyme(m)){
+				if(s.equals(mot)){
+					res = true;
+					break;
+				}
 			}
 		}
-		return tousLesVerbesPossibles;
+		return res;
 	}
 
-	public Mot getNom(){
-		return this.mots[2];
+	/**
+	 * 0btient tout les mot du type t
+	 * @param t Type
+	 * @return List de mot
+     */
+	private ArrayList<Mot> getMot(Type t){
+		ArrayList<Mot> res = new ArrayList<>();
+		for (Mot m : mots){
+			if(m.getType().equalsIgnoreCase(t.toString())){
+				res.add(m);
+			}
+		}
+		return res;
 	}
 
-	public void setActionsPossibles(HashMap< Mot, List<String> > syn) {
-		this.synonymes = syn;
+	/**
+	 * Récupère la liste des synonyme plus le libelle du mot
+	 * @param m Mot
+	 * @return Liste de String
+     */
+	private List<String> getSynonyme(Mot m){
+		List<String> res = synonymes.get(m);
+		if(res == null){
+			res = new ArrayList<>();
+		}
+		res.add(m.getLibelle());
+		return res;
 	}
+
 }

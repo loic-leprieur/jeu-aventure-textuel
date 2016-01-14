@@ -6,7 +6,7 @@ package source.moteur.analyseur.analyse;
 
 import source.moteur.analyseur.Phrase;
 import source.moteur.analyseur.dictionnaire.Dictionnaire;
-import source.moteur.regles.Regle;
+import source.moteur.analyseur.dictionnaire.Type;
 
 /**
  * @author Laura
@@ -14,22 +14,20 @@ import source.moteur.regles.Regle;
  */
 public class Analyseur {
 
-	private static Dictionnaire dico;
-	private static String aAnalyser;
+	private Dictionnaire dico;
 	/**
 	 * constructeur 
 	 */
-	public Analyseur(Dictionnaire dico, String ph){
+	public Analyseur(Dictionnaire dico){
 		this.dico = dico;
-		aAnalyser = ph;
 	}
 
 	/**
 	 * methode qui va analyser la phrase et faire les appels sur dictionnaire qu il faut 
 	 */
-	public static Phrase analyserPhrase(){
+	public  Phrase analyserPhrase(String aAnalyser){
 		String[] tab = aAnalyser.split(" ");
-		Phrase phrase = null;
+		Phrase phrase = new Phrase("null","null");
 		//nb : pour ce qui suit on a besoin d'une decomposition du dico
 
 		switch(tab.length){
@@ -40,76 +38,31 @@ public class Analyseur {
 			//le premier est un verbe le deuxieme est un nom 
 			//comparaison du premier mot avec les VERBES du dico etc 
 			//si non present : phrase non comprise
-			//if(comparerVerbe(tab[0])!=null && comparerNom(tab[1])!=null){
-			phrase = new Phrase(tab[0],tab[1]);
-			//}else{
-				//faire en sorte dafficher message d erreur
-				//System.out.println("Mots inconnus");
-			//}
+			if(dico.estPresent(Type.verbe,tab[0]) && dico.estPresent(Type.complement,tab[1])) {
+				phrase = new Phrase(tab[0],tab[1]);
+			}
 			break;
-		case 3: 
-			//le premier est un verbe, le deuxieme est une preposition, le troisieme est un nom 
-			//comparaison du premier mot avec les VERBES du dico etc 
-			//si non present : phrase non comprise
+		case 3:
+			/*
+			le premier est un verbe, le deuxieme est une preposition, le troisieme est un nom
+			comparaison du premier mot avec les VERBES du dico etc
+			si non present : phrase non comprise
 			if(comparerVerbe(tab[0])!=null && comparerPrepo(tab[1])!=null && comparerNom(tab[2])!=null ){
 
-			}else{
-				//faire en sorte dafficher message d erreur 
 			}
-
-			break;
+			break;*/
 		case 4:
-			//le premier est un verbe, le deuxieme est un nom, le troisieme une preposition, le quatrieme un nom
-			//comparaison du premier mot avec les VERBES du dico etc 
-			//si non present : phrase non comprise
+			/*
+			le premier est un verbe, le deuxieme est un nom, le troisieme une preposition, le quatrieme un nom
+			comparaison du premier mot avec les VERBES du dico etc
+			si non present : phrase non comprise
 			if(comparerVerbe(tab[0])!=null && comparerNom(tab[1])!=null && comparerPrepo(tab[2])!=null && comparerNom(tab[3])!=null ){
 
-			}else{
-				//faire en sorte dafficher message d erreur 
 			}
 
-			break;
-
-		default :
-			//leve le cas de phrase incorrecte
-			phrase = new Phrase("null","null");
-			break;
+			break;*/
 		}
 		return phrase;
 	}
 
-	//TODO : implémenter, voir pour reagencer sous la forme d'une classe abstraite comparaison 
-	/**
-	 * méthode pour comparer les verbes avec le dictionnaire 
-	 */
-	public static String comparerVerbe(String s){
-		String res = null;
-		if(dico.getVerbe().getLibelle() == s){
-			res = s;
-		}
-		return res;
-	}
-
-	/**
-	 * méthode pour comparer les prepositions avec le dictionnaire 
-	 */
-	public static String comparerPrepo(String s){
-		String res = null;
-		//si on trouve on met le mot 
-		return res;
-
-	}
-
-
-	/**
-	 * méthode pour comparer les noms avec le dictionnaire
-	 */
-	public static String comparerNom(String s){
-		String res = null;
-		if(dico.getNom().getLibelle() == s){
-			res = s;
-		}
-		return res;
-
-	}
 }
