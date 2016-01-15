@@ -25,27 +25,23 @@ public class Dictionnaire {
 	public void ajouterNouvelleAction(Mot action, List<String> lSyn){
 		this.synonymes.put(action, lSyn);
 	}
-	
-	/**
-	 * cherche le verbe associé à un synonyme donné.
-	 * Si une des actions (clé de la map de type verbe)
-	 * contient ce synonyme alors le mot est retourné.
-	 * 
-	 * @param synonymeAaction
-	 * @return le verbe associé au synonyme
-	 * 
-	 * TODO : lever une exception si le verbe n'existe pas
-	 */
-	public Mot getAction(String synonymeAaction){
-		Mot verbeTrouve = new Verbe("");
-		for(Mot cle : synonymes.keySet()){
-			for(String valeur : synonymes.get(cle)){
-				if(valeur.equalsIgnoreCase(synonymeAaction) && cle.getType().equals(Type.verbe.toString())){
-					verbeTrouve = cle;
+
+
+	public String getAction(String syn,Type t){
+		String res = null;
+		for(Mot mot : this.getMot(t)){
+			if(mot.getLibelle().equalsIgnoreCase(syn)){
+				res = mot.getLibelle();
+				break;
+			}
+			for(String s : synonymes.get(mot)){
+				if(s.equalsIgnoreCase(syn)){
+					res = mot.getLibelle();
+					break;
 				}
 			}
 		}
-		return verbeTrouve;
+		return res;
 	}
 
 	/**
@@ -58,7 +54,7 @@ public class Dictionnaire {
 		boolean res = false;
 		for(Mot m : getMot(t)){
 			for(String s : getSynonyme(m)){
-				if(s.equals(mot)){
+				if(s.equalsIgnoreCase(mot)){
 					res = true;
 					break;
 				}

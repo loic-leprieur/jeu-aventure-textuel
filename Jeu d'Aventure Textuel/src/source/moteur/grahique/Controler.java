@@ -29,10 +29,15 @@ public class Controler implements EventHandler<ActionEvent> {
     public Controler(Niveau niveau){
         this.niveau = niveau;
         ArrayList<Mot> mots = new ArrayList<>();
-        mots.add(new Verbe("manger"));
+        Mot m = new Verbe("manger");
+        mots.add(m);
         mots.add(new Complement("pomme"));
         mots.add(new Complement("frite"));
         Dictionnaire dico = new Dictionnaire(mots);
+        ArrayList<String> syn = new ArrayList<>();
+        syn.add("avaler");
+        syn.add("croquer");
+        dico.ajouterNouvelleAction(m,syn);
         analyseur = new Analyseur(dico);
     }
 

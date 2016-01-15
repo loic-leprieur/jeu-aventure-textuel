@@ -39,7 +39,7 @@ public class Analyseur {
 			//comparaison du premier mot avec les VERBES du dico etc 
 			//si non present : phrase non comprise
 			if(dico.estPresent(Type.verbe,tab[0]) && dico.estPresent(Type.complement,tab[1])) {
-				phrase = new Phrase(tab[0],tab[1]);
+				phrase = new Phrase(dico.getAction(tab[0],Type.verbe),dico.getAction(tab[1],Type.complement));
 			}
 			break;
 		case 3:
