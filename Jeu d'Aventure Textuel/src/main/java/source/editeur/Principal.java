@@ -24,22 +24,23 @@ public class Principal extends Application {
         new PrincipalFrame();
     }
 
+    private static final String[] IMAGES_OBJETS_PAR_DEFAUT = {"obj_cle.png", "obj_feuille.png"};
+    private static final String[] IMAGES_SALLES_PAR_DEFAUT = {"sal_bureau.jpg", "sal_chambre.jpg"};
+
     /**
      * Charge les fichiers d'images par défaut si inexistant
      */
     private void chargerFichier(){
         String urlCourante = getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
         String urlDossier = "";
-        boolean jar = false;
         String pathTab[] = urlCourante.split("/");
 
-        //On regarde si on execute l'application depuis un jar ou depuis les sources
+        //On regarde si on execute l'application depuis un jar
         //pour définir le chemin du dossier d'image a créer
         if(pathTab[pathTab.length-1].equalsIgnoreCase("4LEditor.jar")){
             for(int i =0;i<pathTab.length-1;i++){
                 urlDossier += pathTab[i] + "/";
             }
-            jar = true;
         }
         urlDossier += "4LEditor";
         File f = new File(urlDossier);
@@ -54,16 +55,12 @@ public class Principal extends Application {
             f = new File(urlDossier + "/images/salles");
             f.mkdir();
 
-            //Si l'on provient d'un jar on va extraire les images
-            if(jar){
-                UtilEditor.copieCollerFromJar(urlCourante,urlDossier);
-            }else{ //sinon on les copies simplement
-                for(String s : UtilEditor.getCheminImage(UtilEditor.ImageType.OBJET)){
-                    UtilEditor.copierColler(new File("src/source/editeur/images/objets/" + s),new File(urlDossier + "/images/objets/" + s));
-                }
-                for(String s : UtilEditor.getCheminImage(UtilEditor.ImageType.SALLE)){
-                    UtilEditor.copierColler(new File("src/source/editeur/images/salles/" + s),new File(urlDossier + "/images/salles/" + s));
-                }
+            //On copie les images par défaut embarquées dans le classpath (jar ou target/classes)
+            for(String s : IMAGES_OBJETS_PAR_DEFAUT){
+                UtilEditor.copierRessource("/source/editeur/images/objets/" + s, new File(urlDossier + "/images/objets/" + s));
+            }
+            for(String s : IMAGES_SALLES_PAR_DEFAUT){
+                UtilEditor.copierRessource("/source/editeur/images/salles/" + s, new File(urlDossier + "/images/salles/" + s));
             }
         }
         UtilEditor.cheminImage = urlDossier + "/images/";
