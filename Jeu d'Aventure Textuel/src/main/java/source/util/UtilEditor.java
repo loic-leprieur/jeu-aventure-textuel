@@ -11,10 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.Enumeration;
 import java.util.Map;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
 
 /**
@@ -24,7 +21,7 @@ public class UtilEditor {
 
     public enum ImageType {OBJET,SALLE}
 
-    public static String cheminImage = "src/source/editeur/images/";
+    public static String cheminImage = "4LEditor/images/";
 
     /**
      * Créer un Stage
@@ -39,7 +36,7 @@ public class UtilEditor {
         Stage stage = new Stage();
         stage.setTitle(titre);
         stage.setResizable(resizible);
-        pane.getStylesheets().add("source/editeur/util/style/style.css");
+        pane.getStylesheets().add(UtilEditor.class.getResource("/source/editeur/util/style/style.css").toExternalForm());
         pane.setStyle("-fx-background-color: white");
         stage.setScene(new Scene(pane,width,height));
         return stage;
@@ -210,67 +207,17 @@ public class UtilEditor {
     }
 
     /**
-     * Copie et Colle le fichier a l'endroit demandé
-     * @param source Fichier a copier
+     * Copie une ressource du classpath (images embarquées dans le jar ou dans target/classes) vers un fichier
+     * @param cheminRessource Chemin de la ressource sur le classpath (ex: "/source/editeur/images/objets/obj_cle.png")
      * @param destination Fichier où coller
      */
-    public static void copierColler( File source, File destination ){
-        try {
-            int c;
-            InputStream in = new FileInputStream(source);
-            OutputStream out = new FileOutputStream(destination);
-            while ((c=in.read())!=-1){
-                out.write(c);
-            }
-            in.close();
-            out.close();
+    public static void copierRessource(String cheminRessource, File destination){
+        try(InputStream in = UtilEditor.class.getResourceAsStream(cheminRessource);
+            OutputStream out = new FileOutputStream(destination)){
+            in.transferTo(out);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Extrait des fichier du jar à l'endroit demandé
-     * @param source Chemin du jar
-     * @param destination Destination
-     */
-    public static void copieCollerFromJar(String source,String destination){
-        try {
-            ZipFile zipFile = new ZipFile(source);
-            Enumeration entries = zipFile.entries();
-            ZipEntry entry;
-
-            //Recherche parmis les fichiers
-            while (entries.hasMoreElements()){
-                entry = (ZipEntry)entries.nextElement();
-                if(!entry.isDirectory()){
-                    String name = entry.getName();
-                    //On vérifie que le fichier est le bon
-                    if(name.contains("images") && (name.contains(".jpg") || name.contains(".png")) && (name.contains("obj_") || name.contains("sal_"))){
-                        extraire(zipFile,entry,destination);
-                    }
-                }
-            }
-            zipFile.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void extraire(ZipFile zipFile,ZipEntry entry,String destination) throws IOException {
-        BufferedInputStream input = new BufferedInputStream(zipFile.getInputStream(entry));
-
-        String dest = destination + "/" + entry.getName();
-        BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(new File(dest)));
-
-        int k;
-        byte[] bytes = new byte[2048];
-        while((k = input.read(bytes)) != -1)
-            output.write(bytes,0,k);
-
-        input.close();
-        output.flush();
-        output.close();
     }
 
 }
