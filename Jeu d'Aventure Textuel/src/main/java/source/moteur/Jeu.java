@@ -25,11 +25,11 @@ public class Jeu extends Application{
     public void start(Stage primaryStage) throws Exception {
         setUserAgentStylesheet(STYLESHEET_MODENA);
 
-        Objet obj1 = new Objet("clé","une clé",new Image("source/editeur/images/objets/obj_cle.png"));
+        Objet obj1 = new Objet("clé","une clé",new Image(getClass().getResource("/source/editeur/images/objets/obj_cle.png").toExternalForm()));
         ArrayList<Objet> objs = new ArrayList<>();
         objs.add(obj1);
         HashMap<Direction,Salle> map = new HashMap<>();
-        Salle s1 = new Salle("salle1","descsalle1",new Image("source/editeur/images/salles/sal_bureau.jpg"),objs,map);
+        Salle s1 = new Salle("salle1","descsalle1",new Image(getClass().getResource("/source/editeur/images/salles/sal_bureau.jpg").toExternalForm()),objs,map);
         ArrayList<Salle> salles = new ArrayList<>();
         salles.add(s1);
         niveau = new Niveau("niv1",salles);
