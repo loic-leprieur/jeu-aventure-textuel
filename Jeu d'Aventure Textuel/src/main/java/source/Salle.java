@@ -6,7 +6,6 @@ import source.moteur.exception.ObjetDejaExistantDansSalleException;
 import source.moteur.exception.ObjetPasDansSalleException;
 import source.moteur.exception.SalleInexistanteException;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -145,5 +144,26 @@ public class Salle {
 
     public Map<Direction, Salle> getLiens() {
         return liens;
+    }
+
+    /**
+     * Ajoute un passage vers une autre salle
+     * @param direction Direction à prendre
+     * @param salle Salle d'arrivée
+     */
+    public void ajouterLien(Direction direction, Salle salle) {
+        this.liens.put(direction, salle);
+    }
+
+    /**
+     * @return Objets visibles dans la salle
+     */
+    public List<Objet> getObjetsVisibles() {
+        return objets.stream().filter(Objet::isVisible).toList();
+    }
+
+    @Override
+    public String toString() {
+        return nom;
     }
 }

@@ -1,20 +1,20 @@
 package source.moteur;
 
 import javafx.application.Application;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import source.Niveau;
-import source.Objet;
-import source.Salle;
+import source.editeur.composants.Dialogues;
+import source.editeur.modele.FormatJeuException;
 import source.moteur.grahique.PrincipalFrame;
-import source.moteur.analyseur.analyse.Analyseur;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
+/**
+ * Lancement du moteur de jeu.
+ * Argument facultatif : fichier de jeu (.aventure ou script .txt) ; sans argument, le jeu de démonstration.
+ */
 public class Jeu extends Application{
-
-    private Niveau niveau;
 
     public static void main(String[] args){
         launch(args);
@@ -25,17 +25,18 @@ public class Jeu extends Application{
     public void start(Stage primaryStage) throws Exception {
         setUserAgentStylesheet(STYLESHEET_MODENA);
 
-        Objet obj1 = new Objet("clé","une clé",new Image(getClass().getResource("/source/editeur/images/objets/obj_cle.png").toExternalForm()));
-        ArrayList<Objet> objs = new ArrayList<>();
-        objs.add(obj1);
-        HashMap<Direction,Salle> map = new HashMap<>();
-        Salle s1 = new Salle("salle1","descsalle1",new Image(getClass().getResource("/source/editeur/images/salles/sal_bureau.jpg").toExternalForm()),objs,map);
-        ArrayList<Salle> salles = new ArrayList<>();
-        salles.add(s1);
-        niveau = new Niveau("niv1",salles);
-
-        new PrincipalFrame(niveau);
-
-
+        List<String> arguments = getParameters().getRaw();
+        ChargeurJeu.JeuCharge jeu = null;
+        if(!arguments.isEmpty()){
+            File f = new File(arguments.get(0));
+            try {
+                jeu = ChargeurJeu.ouvrir(f.toPath());
+            } catch (FormatJeuException e) {
+                Dialogues.erreur(null, "Le fichier « " + f.getName() + " » contient une erreur.", e.getMessage());
+            } catch (IOException e) {
+                Dialogues.erreur(null, "Impossible d'ouvrir « " + f.getName() + " ».", String.valueOf(e.getMessage()));
+            }
+        }
+        new PrincipalFrame(jeu != null ? jeu : ChargeurJeu.demo());
     }
 }

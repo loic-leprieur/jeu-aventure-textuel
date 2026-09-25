@@ -1,31 +1,34 @@
 package source.moteur.grahique.pane;
 
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import source.Niveau;
+import javafx.scene.layout.BorderPane;
+import source.moteur.MoteurJeu;
 import source.moteur.grahique.Controler;
 import source.moteur.grahique.vue.LogVue;
 
 /**
- * Created by louzw on 10/01/2016.
+ * Journal de la partie et zone de saisie des commandes
  */
-public class ZoneTextePane extends GridPane {
+public class ZoneTextePane extends BorderPane {
 
-    public ZoneTextePane(Pane pane, Niveau niveau){
-        this.setStyle("-fx-background-color: red;");
-        this.prefWidthProperty().bind(pane.prefWidthProperty());
-        this.prefHeightProperty().bind(pane.prefHeightProperty());
+    private final TextField saisie = new TextField();
 
-        LogVue ztp = new LogVue(pane);
-        niveau.addObserver(ztp);
+    public ZoneTextePane(MoteurJeu moteur){
+        LogVue journal = new LogVue();
+        moteur.getNiveau().addObserver(journal);
 
-        TextField ta2 = new TextField();
-        ta2.setPrefWidth(this.getPrefWidth());
-        ta2.setOnAction(new Controler(niveau));
+        saisie.setPromptText("Que veux-tu faire ? (ex : prends la clé puis va au nord)");
+        saisie.getStyleClass().add("saisie");
+        new Controler(moteur, saisie);
 
-        this.add(ztp,0,0);
-        this.add(ta2,0,1);
+        setCenter(journal);
+        setBottom(saisie);
+    }
 
+    /**
+     * Place le curseur dans la zone de saisie
+     */
+    public void activerSaisie(){
+        saisie.requestFocus();
     }
 }

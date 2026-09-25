@@ -2,7 +2,6 @@ package source;
 
 import javafx.scene.image.Image;
 
-import java.awt.image.BufferedImage;
 
 /**
  * Classe correspondant a un objet
@@ -93,5 +92,20 @@ public class Objet {
 
     public int getY() {
         return y;
+    }
+
+    /**
+     * Déplace l'objet dans l'image de la salle
+     * @param x Position horizontale, en pourcentage de la largeur de l'image
+     * @param y Position verticale, en pourcentage de la hauteur de l'image
+     */
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return nom;
     }
 }

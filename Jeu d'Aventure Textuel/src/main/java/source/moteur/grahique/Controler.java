@@ -3,42 +3,46 @@ package source.moteur.grahique;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
-import source.Niveau;
-import source.moteur.analyseur.analyse.Analyseur;
-import source.moteur.analyseur.dictionnaire.Complement;
-import source.moteur.analyseur.dictionnaire.Dictionnaire;
-import source.moteur.analyseur.dictionnaire.Mot;
-import source.moteur.analyseur.dictionnaire.Verbe;
-import source.moteur.regles.Regle;
+import javafx.scene.input.KeyCode;
+import source.moteur.MoteurJeu;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Controler de la zone texte de l'utilisateur
+ * Controler de la zone texte de l'utilisateur : envoie la commande au moteur.
+ * Les flèches haut / bas rappellent les commandes précédentes.
  */
 public class Controler implements EventHandler<ActionEvent> {
 
-    private Niveau niveau;
-    private Analyseur analyseur;
+    private final MoteurJeu moteur;
+    private final List<String> historique = new ArrayList<>();
+    private int position = 0;
 
     /**
      * Constructeur du controler
-     * @param niveau Observable
+     * @param moteur Moteur de la partie
+     * @param champ Zone de saisie
      */
-    public Controler(Niveau niveau){
-        this.niveau = niveau;
-        ArrayList<Mot> mots = new ArrayList<>();
-        Mot m = new Verbe("manger");
-        mots.add(m);
-        mots.add(new Complement("pomme"));
-        mots.add(new Complement("frite"));
-        Dictionnaire dico = new Dictionnaire(mots);
-        ArrayList<String> syn = new ArrayList<>();
-        syn.add("avaler");
-        syn.add("croquer");
-        dico.ajouterNouvelleAction(m,syn);
-        analyseur = new Analyseur(dico);
+    public Controler(MoteurJeu moteur, TextField champ){
+        this.moteur = moteur;
+        champ.setOnAction(this);
+        champ.setOnKeyPressed(e -> {
+            if(e.getCode() == KeyCode.UP && position > 0){
+                position--;
+                afficher(champ);
+                e.consume();
+            }else if(e.getCode() == KeyCode.DOWN && position < historique.size()){
+                position++;
+                afficher(champ);
+                e.consume();
+            }
+        });
+    }
+
+    private void afficher(TextField champ){
+        champ.setText(position < historique.size() ? historique.get(position) : "");
+        champ.end();
     }
 
     @Override
@@ -46,11 +50,11 @@ public class Controler implements EventHandler<ActionEvent> {
         TextField tf = (TextField) event.getSource();
 
         String txt = tf.getText();
-        if(!txt.equals("")){
+        if(!txt.isBlank()){
             tf.setText("");
-            this.niveau.ajouterLog(txt);
-            this.niveau.ajouterLog(Regle.analyser(analyseur.analyserPhrase(txt)));
-
+            historique.add(txt);
+            position = historique.size();
+            moteur.executer(txt);
         }
     }
 }

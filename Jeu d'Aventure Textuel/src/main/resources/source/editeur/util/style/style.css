@@ -78,3 +78,35 @@
 .script {
     -fx-font-family: "Consolas", "Courier New", monospace;
 }
+
+/* ---- Fenêtre de jeu (moteur) ---- */
+
+.salle-vue {
+    -fx-background-color: #1e1e1e;
+}
+
+.salle-titre {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-background-radius: 4;
+    -fx-padding: 2 8 2 8;
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+}
+
+.journal {
+    -fx-font-size: 1.1em;
+}
+
+.saisie {
+    -fx-font-size: 1.15em;
+}
+
+.titre-jeu {
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+}
+
+.titre-panneau {
+    -fx-font-weight: bold;
+}

@@ -1,28 +1,31 @@
 package source.moteur.grahique.composant;
 
-import javafx.application.Platform;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
+import javafx.scene.input.KeyCombination;
+import source.moteur.grahique.PrincipalFrame;
 
 /**
- * Created by louzw on 10/01/2016.
+ * Menu de la fenêtre de jeu
  */
 public class MenuBarTop extends MenuBar {
 
-    public MenuBarTop(Pane pane){
-        this.prefWidthProperty().bind(pane.widthProperty());
+    public MenuBarTop(PrincipalFrame fenetre){
 
         //Menu Fichier
-        Menu menuFichier = new Menu("Fichier");
-        MenuItem menuFichierCharger = new MenuItem("Charger");
-        menuFichierCharger.setOnAction(actionEvent -> {
+        Menu menuFichier = new Menu("_Fichier");
+        MenuItem ouvrir = new MenuItem("Ouvrir un jeu…");
+        ouvrir.setAccelerator(KeyCombination.keyCombination("Shortcut+O"));
+        ouvrir.setOnAction(e -> fenetre.ouvrir());
 
-        });
+        MenuItem recommencer = new MenuItem("Recommencer la partie");
+        recommencer.setAccelerator(KeyCombination.keyCombination("Shortcut+R"));
+        recommencer.setOnAction(e -> fenetre.recommencer());
 
-        MenuItem menuFichierQuitter = new MenuItem("Quitter");
-        menuFichierQuitter.setOnAction(actionEvent -> Platform.exit());
+        MenuItem fermer = new MenuItem("Fermer");
+        fermer.setAccelerator(KeyCombination.keyCombination("Shortcut+W"));
+        fermer.setOnAction(e -> fenetre.fermer());
 
-        menuFichier.getItems().addAll(menuFichierCharger,new SeparatorMenuItem(),menuFichierQuitter);
+        menuFichier.getItems().addAll(ouvrir, recommencer, new SeparatorMenuItem(), fermer);
 
         //Ajout menu à la menubar
         this.getMenus().add(menuFichier);

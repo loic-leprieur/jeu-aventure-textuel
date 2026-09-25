@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import source.editeur.composants.Dialogues;
 import source.editeur.images.GestionImages;
 import source.editeur.images.ObservableListImage;
+import source.editeur.modele.ModeleJeu;
+import source.moteur.ChargeurJeu;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -45,9 +47,11 @@ public class PaneTop extends MenuBar {
 
         //Menu Jeu
         Menu menuJeu = new Menu("_Jeu");
+        MenuItem tester = element("Tester le jeu", "F9");
+        tester.setOnAction(e -> tester(stage));
         MenuItem nom = new MenuItem("Nom du jeu…");
         nom.setOnAction(e -> actions.renommerJeu());
-        menuJeu.getItems().add(nom);
+        menuJeu.getItems().addAll(tester, new SeparatorMenuItem(), nom);
 
         //Menu Option
         Menu menuOption = new Menu("_Options");
@@ -65,6 +69,18 @@ public class PaneTop extends MenuBar {
         MenuItem m = new MenuItem(texte);
         m.setAccelerator(KeyCombination.keyCombination(raccourci));
         return m;
+    }
+
+    /**
+     * Lance le jeu en cours d'édition dans la fenêtre du moteur.
+     * « Recommencer la partie » y prend en compte les dernières modifications.
+     */
+    private static void tester(Stage stage){
+        if(ModeleJeu.get().getSalles().isEmpty()){
+            Dialogues.erreur(stage, "Impossible de tester le jeu", "Ajoutez au moins une salle.");
+            return;
+        }
+        new source.moteur.grahique.PrincipalFrame(new ChargeurJeu.JeuCharge(ModeleJeu.get(), GestionImages.dossierRacine()));
     }
 
     private static void ouvrirDossierImages(Stage stage){

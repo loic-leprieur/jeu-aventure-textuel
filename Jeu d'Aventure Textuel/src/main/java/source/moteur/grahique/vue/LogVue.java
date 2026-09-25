@@ -1,28 +1,34 @@
 package source.moteur.grahique.vue;
 
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Pane;
 import source.Niveau;
 
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by louzw on 10/01/2016.
+ * Journal de la partie : commandes du joueur et réponses du jeu
  */
 public class LogVue extends TextArea implements Observer {
 
-    public LogVue(Pane pane){
+    //Nombre de lignes du journal déjà affichées
+    private int affichees = 0;
+
+    public LogVue(){
         this.setEditable(false);
-        this.setPrefWidth(pane.getPrefWidth());
+        this.setWrapText(true);
+        this.setFocusTraversable(false);
+        this.getStyleClass().add("journal");
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        String txt = "";
-        for(String s : ((Niveau)o).getLog()){
-            txt += s + "\n";
+        List<String> log = ((Niveau)o).getLog();
+        //appendText fait défiler jusqu'en bas
+        for(; affichees < log.size(); affichees++){
+            String ligne = log.get(affichees);
+            this.appendText((getLength() == 0 ? "" : ligne.startsWith("> ") ? "\n\n" : "\n") + ligne);
         }
-        this.setText(txt);
     }
 }
