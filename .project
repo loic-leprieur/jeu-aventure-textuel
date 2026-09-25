@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>jeu-aventure-textuel</name>
-	<comment>Project jeu-aventure-textuel created by Buildship.</comment>
+	<comment>Documentation du projet. Le code Java est dans le projet Maven JeuAventureTextuel (dossier "Jeu d'Aventure Textuel").</comment>
 	<projects>
 	</projects>
 	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 	</natures>
 </projectDescription>
