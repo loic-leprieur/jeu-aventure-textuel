@@ -1,20 +1,17 @@
 package source.editeur.composants.objet;
 
-
 import source.editeur.action.table.ObjetTable;
-import source.editeur.composants.GridPaneEditeur;
+import source.editeur.composants.ListePane;
+import source.editeur.modele.Objet;
 
 /**
  * Classe ObjetPane
+ * Liste des éléments de type Objet, avec les boutons Ajouter / Modifier / Supprimer
  */
-public class ObjetPane extends GridPaneEditeur {
+public class ObjetPane extends ListePane<Objet> {
 
-    /**
-     * Constructeur de ObjetPane
-     * Créer un pane pour objet, il sera utiliser dans le stage
-     */
-    public ObjetPane(){
-        this.createComponent(new ObjetTable(),new ObjetFrame());
+    public ObjetPane() {
+        super(new ObjetTable(), new ObjetFrame(),
+                "Aucun objet. Cliquez sur Ajouter pour créer un objet (nom, description, image).");
     }
-
 }

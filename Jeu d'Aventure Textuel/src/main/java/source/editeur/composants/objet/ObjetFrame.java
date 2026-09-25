@@ -1,50 +1,74 @@
 package source.editeur.composants.objet;
 
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import source.editeur.action.bouton.ObjetBouton;
-import source.editeur.composants.ParentFrame;
-import source.editeur.images.ObservableListImage;
+import javafx.scene.control.TextField;
+import source.editeur.composants.FormulaireFrame;
+import source.editeur.composants.SelecteurImage;
+import source.editeur.modele.ModeleJeu;
+import source.editeur.modele.Objet;
+import source.editeur.util.Constante;
 import source.util.UtilEditor;
 
 /**
  * Classe ObjetFrame
+ * Fenêtre permettant d'ajouter ou de modifier un objet
  */
-public class ObjetFrame extends ParentFrame {
+public class ObjetFrame extends FormulaireFrame<Objet> {
 
-    /**
-     * Constructeur ObjetFrame
-     * Créer un stage pour objet permettant de modifier ou d'ajouter un objet
-     */
-    public ObjetFrame(){
+    private final TextField nom = new TextField();
+    private final TextArea description = new TextArea();
+    private final CheckBox prenable = new CheckBox("Le joueur peut prendre cet objet");
+    private final SelecteurImage image = new SelecteurImage(UtilEditor.ImageType.OBJET, 120);
 
-        GridPane pane = new GridPane();
-        UtilEditor.configGridPane(pane,6,6,new Insets(0,6,0,5),true);
+    public ObjetFrame() {
+        super("un objet");
+        nom.setPromptText("ex : clé");
+        description.setPromptText("ex : Une petite clé rouillée");
+        description.setPrefRowCount(3);
+        description.setWrapText(true);
+        ligne("Nom", nom);
+        ligne("Description", description);
+        ligne("", prenable);
+        ligne("Image", image);
+    }
 
-        pane.add(UtilEditor.createLabel(pane,"Nom",true),0,0);
-        pane.add(UtilEditor.createLabel(pane,"Description",true),1,0);
-        pane.add(UtilEditor.createLabel(pane,"Chemin Image",true),3,0);
+    @Override
+    protected void vider() {
+        nom.clear();
+        description.clear();
+        prenable.setSelected(false);
+        image.setValeur(null);
+        nom.requestFocus();
+    }
 
-        final TextArea nom = UtilEditor.createTextArea(pane,null,true,false);
-        pane.add(nom,0,1);
+    @Override
+    protected void remplir(Objet o) {
+        nom.setText(o.getNom());
+        description.setText(o.getDescription());
+        prenable.setSelected(o.isPrenable());
+        image.setValeur(o.getImage());
+    }
 
-        final TextArea description = UtilEditor.createTextArea(pane,null,true,false);
-        pane.add(description,1,1);
+    @Override
+    protected String verifier(Objet existant) {
+        return Constante.premiere(
+                Constante.verifierNom("Le nom de l'objet", nom.getText()),
+                ModeleJeu.nomUtilise(modele.getObjets(), nom.getText(), existant)
+                        ? "Un autre objet s'appelle déjà « " + nom.getText().trim() + " »." : null,
+                Constante.verifierLongueur("La description", description.getText(), Constante.TAILLE_DESCRIPTION_MAX),
+                image.getValeur().isEmpty() ? "Choisissez une image pour l'objet, ou importez-en une." : null);
+    }
 
-        final CheckBox prenable = UtilEditor.createCheckBox(pane,"Objet prenable",false,true);
-        pane.add(prenable,2,0,1,2);
-
-        final ComboBox<String> image = UtilEditor.createComboBox(pane, ObservableListImage.imageObjetList);
-        pane.add(image,3,1);
-
-        final Button b = UtilEditor.createButton(pane,"Ajouter",true,false);
-        b.setOnAction(new ObjetBouton(nom,description,prenable,image));
-        pane.add(b,4,0,1,2);
-
-        super.stage = UtilEditor.createStage("Création Objet",600,100,pane,false);
+    @Override
+    protected void enregistrer(Objet existant) {
+        Objet o = existant == null ? new Objet() : existant;
+        o.setNom(nom.getText());
+        o.setDescription(description.getText());
+        o.setPrenable(prenable.isSelected());
+        o.setImage(image.getValeur());
+        if (existant == null) {
+            modele.getObjets().add(o);
+        }
     }
 }

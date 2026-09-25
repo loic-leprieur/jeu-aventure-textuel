@@ -1,19 +1,17 @@
 package source.editeur.composants.lien;
 
 import source.editeur.action.table.LienTable;
-import source.editeur.composants.GridPaneEditeur;
+import source.editeur.composants.ListePane;
+import source.editeur.modele.Lien;
 
 /**
  * Classe LienPane
+ * Liste des éléments de type Lien, avec les boutons Ajouter / Modifier / Supprimer
  */
-public class LienPane extends GridPaneEditeur {
+public class LienPane extends ListePane<Lien> {
 
-    /**
-     * Constructeur LienPane
-     * Créer un pane pour lien, il sera utiliser dans le stage
-     */
-    public LienPane(){
-        this.createComponent(new LienTable(),new LienFrame());
+    public LienPane() {
+        super(new LienTable(), new LienFrame(),
+                "Aucun lien. Les liens définissent les passages entre les salles (nord, sud, est, ouest).");
     }
-
 }

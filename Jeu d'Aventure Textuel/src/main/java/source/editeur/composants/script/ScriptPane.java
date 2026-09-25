@@ -1,42 +1,37 @@
 package source.editeur.composants.script;
 
-
-import javafx.collections.ListChangeListener;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import source.editeur.action.table.ObjetTable;
-import source.editeur.action.table.Script;
-import source.editeur.action.table.VariableTable;
-import source.editeur.composants.GridPaneEditeur;
-import source.editeur.composants.objet.Objet;
-import source.editeur.composants.variable.Variable;
+import javafx.scene.layout.BorderPane;
+import source.editeur.modele.FormatJeu;
+import source.editeur.modele.ModeleJeu;
 
 /**
  * Classe ScriptPane
+ * Aperçu du script du jeu, tel qu'il sera enregistré dans le fichier (lecture seule)
  */
-public class ScriptPane extends GridPaneEditeur {
+public class ScriptPane extends BorderPane {
 
-    /**
-     * Constructeur de ScriptPane
-     */
-    public ScriptPane(){
-        final TextArea ta = new Script();
-        ta.prefWidthProperty().bind(this.widthProperty());
-        ta.prefHeightProperty().bind(this.heightProperty());
-        ta.setEditable(false);
-        addListenerVariable(ta);
-        this.add(ta,1,0);
-        Script.refresh();
+    private final TextArea texte = new TextArea();
+
+    public ScriptPane() {
+        texte.setEditable(false);
+        texte.getStyleClass().add("script");
+        setCenter(texte);
+
+        Label aide = new Label("Aperçu du script enregistré dans le fichier .aventure (mis à jour automatiquement).");
+        aide.getStyleClass().add("texte-aide");
+        aide.setPadding(new Insets(0, 0, 4, 0));
+        setTop(aide);
+
+        ModeleJeu.get().versionProperty().addListener(o -> actualiser());
+        actualiser();
     }
 
-    private void addListenerVariable(final TextArea t){
-
-        //Ajout d'un Listener à la liste d'objet
-        ObjetTable.objet.addListener((ListChangeListener<Objet>) c -> Script.refresh());
-
-        //AJout d'un Listener à la liste de variable
-        VariableTable.variable.addListener((ListChangeListener<Variable>) c -> Script.refresh());
-
-
-        Script.script.addListener((observable, oldValue, newValue) -> t.setText(newValue));
+    private void actualiser() {
+        double defilement = texte.getScrollTop();
+        texte.setText(FormatJeu.ecrire(ModeleJeu.get()));
+        texte.setScrollTop(defilement);
     }
 }

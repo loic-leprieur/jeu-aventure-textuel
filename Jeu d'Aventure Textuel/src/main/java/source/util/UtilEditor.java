@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import source.editeur.images.GestionImages;
 
 import java.io.*;
 import java.util.Map;
@@ -197,11 +198,16 @@ public class UtilEditor {
             default:
                 return res;
         }
-        File f = new File(chemin);
-
-        for(String s : f.list()){
-            res.add(s);
+        String[] fichiers = new File(chemin).list();
+        if(fichiers == null){
+            return res;
         }
+        for(String s : fichiers){
+            if(GestionImages.estImage(s)){
+                res.add(s);
+            }
+        }
+        res.sort(String.CASE_INSENSITIVE_ORDER);
 
         return res;
     }
