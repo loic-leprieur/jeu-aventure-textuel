@@ -1,0 +1,150 @@
+# Jeu de démonstration du moteur : trouver la clé pour sortir du bureau.
+# Solution : lire la feuille, regarder sous le bureau, prendre la clé,
+# ouvrir la porte avec la clé, aller au nord.
+
+[jeu]
+version = 1
+nom = Le bureau fermé
+salleDepart = Bureau
+
+[variable]
+nom = porte_ouverte
+valeur = non
+
+[variable]
+nom = cle_trouvee
+valeur = non
+
+[objet]
+nom = clé
+description = Une petite clé en laiton. Elle doit ouvrir une porte…
+prenable = true
+image = obj_cle.png
+
+[objet]
+nom = feuille
+description = Une feuille couverte d'une écriture pressée. Tu pourrais la lire.
+prenable = true
+image = obj_feuille.png
+
+[salle]
+nom = Bureau
+description = Un bureau encombré de livres et de papiers. Au nord, une porte en bois.
+image = sal_bureau.jpg
+
+[salle]
+nom = Chambre
+description = Une chambre silencieuse. Bravo, tu as réussi à sortir du bureau ! (Fin de la démonstration.)
+image = sal_chambre.jpg
+
+[lien]
+depart = Bureau
+direction = NORD
+arrivee = Chambre
+
+[lien]
+depart = Chambre
+direction = SUD
+arrivee = Bureau
+
+[association]
+salle = Bureau
+objet = feuille
+x = 62
+y = 78
+visible = true
+
+[association]
+salle = Bureau
+objet = clé
+x = 28
+y = 88
+visible = false
+
+# La feuille donne l'indice
+[regle]
+verbe = lire
+complement = feuille
+message = Il est écrit : « J'ai caché la clé sous le bureau. »
+
+# Trouver la clé
+[regle]
+verbe = regarder
+complement = Bureau
+preposition = sous
+salle = Bureau
+condition.variable = cle_trouvee
+condition.valeur = non
+message = Tu te penches sous le bureau… et tu trouves une petite clé !
+effet.variable = cle_trouvee
+effet.valeur = oui
+effet.objet.action = AFFICHER
+effet.objet = clé
+
+[regle]
+verbe = fouiller
+complement = Bureau
+salle = Bureau
+condition.variable = cle_trouvee
+condition.valeur = non
+message = Tu fouilles partout… et sous le bureau, tu trouves une petite clé !
+effet.variable = cle_trouvee
+effet.valeur = oui
+effet.objet.action = AFFICHER
+effet.objet = clé
+
+[regle]
+verbe = regarder
+complement = Bureau
+preposition = sous
+salle = Bureau
+message = Il n'y a plus rien sous le bureau.
+
+# La porte
+[regle]
+verbe = regarder
+complement = porte
+salle = Bureau
+message = Une solide porte en bois, avec une serrure en laiton.
+
+[regle]
+verbe = aller
+complement = nord
+salle = Bureau
+condition.variable = porte_ouverte
+condition.valeur = non
+message = La porte est fermée à clé.
+
+[regle]
+verbe = ouvrir
+complement = porte
+salle = Bureau
+condition.variable = porte_ouverte
+condition.valeur = non
+message = La porte est fermée à clé. Il te faudrait quelque chose pour l'ouvrir.
+
+[regle]
+verbe = ouvrir
+complement = porte
+preposition = avec
+complementSecondaire = clé
+salle = Bureau
+condition.variable = porte_ouverte
+condition.valeur = non
+message = La clé tourne dans la serrure : la porte s'ouvre !
+effet.variable = porte_ouverte
+effet.valeur = oui
+
+[regle]
+verbe = ouvrir
+complement = porte
+salle = Bureau
+message = La porte est déjà ouverte.
+
+[regle]
+verbe = ouvrir
+complement = porte
+preposition = avec
+complementSecondaire = clé
+salle = Bureau
+message = La porte est déjà ouverte.
