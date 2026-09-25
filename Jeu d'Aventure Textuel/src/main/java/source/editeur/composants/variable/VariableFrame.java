@@ -1,40 +1,58 @@
 package source.editeur.composants.variable;
 
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import source.editeur.action.bouton.VariableBouton;
-import source.editeur.composants.ParentFrame;
-import source.util.UtilEditor;
+import javafx.scene.control.TextField;
+import source.editeur.composants.FormulaireFrame;
+import source.editeur.modele.ModeleJeu;
+import source.editeur.modele.Variable;
+import source.editeur.util.Constante;
 
 /**
  * Classe VariableFrame
+ * Fenêtre permettant d'ajouter ou de modifier une variable
  */
-public class VariableFrame extends ParentFrame {
+public class VariableFrame extends FormulaireFrame<Variable> {
 
-    /**
-     * Constructeur de VariableFrame
-     * Créer un stage pour variable permettant de modifier ou d'ajouter une variable
-     */
-    public VariableFrame(){
-        GridPane pane = new GridPane();
-        UtilEditor.configGridPane(pane,6,6,new Insets(0,6,0,5),true);
+    private final TextField nom = new TextField();
+    private final TextField valeur = new TextField();
 
-        pane.add(UtilEditor.createLabel(pane,"Nom",true),0,0);
-        pane.add(UtilEditor.createLabel(pane,"Valeur",true),1,0);
-
-        final TextArea nom = UtilEditor.createTextArea(pane,null,true,false);
-        pane.add(nom,0,1);
-
-        final TextArea valeur = UtilEditor.createTextArea(pane,null,true,false);
-        pane.add(valeur,1,1);
-
-        final Button b = UtilEditor.createButton(pane,"Ajouter",true,false);
-        b.setOnAction(new VariableBouton(nom,valeur));
-        pane.add(b,2,0,1,2);
-
-        super.stage = UtilEditor.createStage("Création Variable",450,100,pane,false);
+    public VariableFrame() {
+        super("une variable");
+        nom.setPromptText("ex : porte_ouverte");
+        valeur.setPromptText("ex : non");
+        ligne("Nom", nom);
+        ligne("Valeur initiale", valeur);
     }
 
+    @Override
+    protected void vider() {
+        nom.clear();
+        valeur.clear();
+        nom.requestFocus();
+    }
+
+    @Override
+    protected void remplir(Variable v) {
+        nom.setText(v.getNom());
+        valeur.setText(v.getValeur());
+    }
+
+    @Override
+    protected String verifier(Variable existant) {
+        return Constante.premiere(
+                Constante.verifierNom("Le nom de la variable", nom.getText()),
+                ModeleJeu.nomUtilise(modele.getVariables(), nom.getText(), existant)
+                        ? "Une autre variable s'appelle déjà « " + nom.getText().trim() + " »." : null,
+                valeur.getText().isBlank() ? "La valeur initiale est obligatoire." : null,
+                Constante.verifierLongueur("La valeur", valeur.getText(), Constante.TAILLE_VALEUR_MAX));
+    }
+
+    @Override
+    protected void enregistrer(Variable existant) {
+        Variable v = existant == null ? new Variable() : existant;
+        v.setNom(nom.getText());
+        v.setValeur(valeur.getText());
+        if (existant == null) {
+            modele.getVariables().add(v);
+        }
+    }
 }

@@ -1,19 +1,17 @@
 package source.editeur.composants.variable;
 
-
 import source.editeur.action.table.VariableTable;
-import source.editeur.composants.GridPaneEditeur;
+import source.editeur.composants.ListePane;
+import source.editeur.modele.Variable;
 
 /**
  * Classe VariablePane
+ * Liste des éléments de type Variable, avec les boutons Ajouter / Modifier / Supprimer
  */
-public class VariablePane extends GridPaneEditeur {
+public class VariablePane extends ListePane<Variable> {
 
-    /**
-     * Constructeur de VariablePane
-     * Créer un pane pour variable, il sera utiliser dans le stage
-     */
-    public VariablePane(){
-        this.createComponent(new VariableTable(),new VariableFrame());
+    public VariablePane() {
+        super(new VariableTable(), new VariableFrame(),
+                "Aucune variable. Les variables mémorisent l'état du jeu (ex : porte_ouverte = non).");
     }
 }
